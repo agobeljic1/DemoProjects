@@ -1,2 +1,2 @@
-# Goblex-Rent-a-car-API
-API for rent a car app in angular and spring boot
+# Rent a car API
+API for rent a car in spring boot
