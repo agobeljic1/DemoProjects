@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+   <meta charset="utf-8">
+   <title>Add vjezba</title>
+   <link href="addVjezba.css" type="text/css" rel="stylesheet">
+   
+</head>
+<body>
+   
+        <div id="header">
+           <div id="logo">
+    
+           </div>
+           <div id="meni">
+                <div id="meni0">                
+                     <a id="linkMeni0" class="meniLink" href="login.html">Login</a>              
+                </div>
+                <div id="meni1">                
+                     <a id="linkMeni1" class="meniLink" href="studenti.html">Pregled studenata</a>              
+                </div>
+                <div id="meni2">                
+                     <a id="linkMeni2" class="meniLink" href="zadaci.html">Pregled zadataka</a>              
+                </div>          
+                <div id="meni3">                
+                     <a id="linkMeni3" class="meniLink" href="commiti.html">Pregled commita</a>              
+                </div>
+                <div id="meni4">                
+                     <a id="linkMeni4" class="meniLink" href="addZadatak.html">Dodavanje zadataka</a>              
+                </div>
+                <div id="meni5">                
+                     <a id="linkMeni5" class="meniLink" href="addVjezba.html">Dodavanje vjezbe</a>              
+                </div>
+                <div id="meni6">                
+                     <a id="linkMeni6" class="meniLink" href="addStudent.html">Dodavanje studenta</a>              
+                </div>
+                <div id="meni7">                
+                     <a id="linkMeni7" class="meniLink" href="addGodina.html">Dodavanje godina</a>              
+                </div>
+           </div>
+           <div id="naziv">
+               <p id="nazivPregled">Dodavanje vježbe/spirale</p>    
+           </div>
+        </div>
+        <div id="contentt">
+            <div id="glavniSadrzaj">
+                <div id="panel1">
+                    <form name="fPostojeca" action="/addVjezba" method="POST" enctype="application/x-www-form-urlencoded">
+
+                        <p id="nova">Dodavanje postojeće vježbe/spirale</p>
+                        <div id="odvojeno5">
+                            <p id="nazivZadatka5">Godina</p>
+                            <select name="sGodine">                             
+                            </select> 
+                            <p id="tekstPostavke5" >Vježbe/Spirale</p>
+                            <div id="special">
+                                <select name="sVjezbe">                              
+                                </select>   
+                                
+                            </div>  
+                            <button id="dodajButton1" onclick="funkcijaDodajPojedinacni();" type="submit" name="submit">Dodaj</button>                                                     
+                        </div>
+                        
+                    </form>
+                </div>
+                <div id="panel2">
+                        <form name="fNova" action="/addVjezba" method="POST" enctype="application/x-www-form-urlencoded">
+                                <p id="postojeca">Nova vježba/spirala</p>
+                                <div id="odvojeno">
+                                    <p id="nazivZadatka">Naziv vježbe</p>
+                                    <input id="input1" type="text" required name="naziv" value="Vježba X *">
+                                    <div id="greskaDivMasovni"></div>
+                                    <p id="tekstPostavke" >Godina</p>
+                                    <select name="sGodine">                             
+                                    </select> 
+                                    
+                                    <br/>
+                                    <div id="prvij">
+                                            <input id="checkboxx" type="checkbox" name="spirala">  
+                                            <label for="checkboxx">Spirala</label>
+                                    </div>    
+                                    
+                                    <input id="dodajButton2" onclick="funkcijaDodajMasovni();" type="submit" name="submit" value="Dodaj">
+                                    <div id="drugaa2">                                        
+                                    </div>                                                                                            
+                                </div>
+                            </form>
+                    </div>
+                    <div id="panel3">
+                            <form name="fPoveziZadatak" action="/vjezba/:idVjezbe/zadatak" method="POST" enctype="application/x-www-form-urlencoded">
+                                <p id="poveziNova">Povezi</p>
+                                <div id="odvojeno1">
+                                <p >Vjezbe</p>
+                                <select id="fPoveziVjezbe" name="sVjezbe" onchange="promjenaId();"></select>                            
+                                
+                                    <div id="inlinepanel"> 
+                                    <p >Zadaci</p>                              
+                                    <select id="prviDiv" name="sZadatak">                              
+                                    </select> 
+                                    <input id="dodajButton3" type="submit" value = "Dodaj zadatak" name="dZadatak">
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+            </div>
+        </div>  
+        
+    
+        <footer id="footer">
+                <p>Web tehnologije 2018/19</p>               
+        </footer>
+       
+
+        <script src="addVjezba.js"></script>
+        <script src="validacija.js"></script>
+       
+</body>
+
+</html>
+

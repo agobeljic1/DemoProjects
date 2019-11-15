@@ -1,0 +1,1856 @@
+-- Nemojte mi sta zamjeriti posto ja stvarno ne znam puno o kladjenju ni istoj terminologiji
+-- Pratim dosta sportova poprilicno ali nisam dovoljno kladionicarski edukovan
+-- Vecinom sam pojmove trazio na internetu pa vjerovatno ima dosta protivrjecnosti
+
+
+
+
+
+-- b) Kreiranje tabela
+
+CREATE TABLE zaposlenici (id_zaposlenog NUMBER NOT NULL,
+                        ime VARCHAR(25) NOT NULL,
+                        prezime VARCHAR(25) NOT NULL,                        
+                        email VARCHAR(25),
+                        telefon VARCHAR(25),
+                        datum_rodjenja DATE NOT NULL,
+                        datum_zaposlenja DATE NOT NULL,
+                        id_posla NUMBER NOT NULL,
+                        plata NUMBER NOT null,  
+                        procenat NUMBER,                                                       
+                        id_menadzera NUMBER,
+                        id_poslovnice NUMBER NOT NULL,
+                        CONSTRAINT pk_zaposlenog PRIMARY KEY (id_zaposlenog)
+                        );
+
+CREATE TABLE poslovi (id_posla NUMBER NOT NULL,
+                      naziv_posla VARCHAR(35),                                                 
+                      CONSTRAINT pk_posla PRIMARY KEY (id_posla)
+                      );
+
+CREATE TABLE lokacije(id_lokacije NUMBER NOT NULL,
+                      adresa_ulice VARCHAR(35),
+                      grad VARCHAR(35) NOT null,
+                      id_zemlje NUMBER NOT NULL,
+                      postanski_broj VARCHAR(10),
+                      provincija VARCHAR(35), 
+                      CONSTRAINT pk_lokacije PRIMARY KEY (id_lokacije)
+                    );
+
+CREATE TABLE zemlje(id_zemlje NUMBER NOT NULL,
+                    ime_zemlje VARCHAR(35) NOT NULL,
+                    porez NUMBER NOT NULL,
+                    id_kontinenta NUMBER NOT NULL,
+                    ime_valute VARCHAR(25) NOT NULL,
+                    valuta_euro NUMBER NOT NULL,
+                    CONSTRAINT pk_zemlje PRIMARY KEY (id_zemlje)
+                   );
+
+CREATE TABLE kontinenti (id_kontinenta NUMBER NOT NULL,
+                         ime_kontinenta VARCHAR(15) NOT NULL,
+                         CONSTRAINT pk_kontinenta PRIMARY KEY (id_kontinenta)
+                         );
+
+
+CREATE TABLE poslovnice (id_poslovnice NUMBER NOT NULL,
+                         naziv_poslovnice VARCHAR(25),
+                         stanje_racuna NUMBER NOT NULL,
+                         id_nadredene_poslovnice NUMBER,
+                         id_lokacije NUMBER NOT NULL,
+                         CONSTRAINT pk_poslovnice PRIMARY KEY (id_poslovnice)
+                         );
+
+
+
+CREATE TABLE klijenti (id_klijenta NUMBER NOT NULL,
+                       ime_klijenta VARCHAR(25) NOT null,
+                       prezime_klijenta VARCHAR(25) NOT null,
+                       stanje_racuna NUMBER NOT NULL,
+                       id_poslovnice NUMBER NOT NULL,
+                       CONSTRAINT pk_klijenta PRIMARY KEY (id_klijenta)
+                       );
+
+CREATE TABLE opklade (id_opklade NUMBER NOT NULL,
+                      id_klijenta NUMBER NOT NULL,
+                      uplata NUMBER NOT NULL,
+                      kvota decimal,
+                      vrijeme_opklade DATE NOT NULL,
+                      CONSTRAINT pk_opklade PRIMARY KEY (id_opklade)
+                     );
+
+
+
+CREATE TABLE ponuda (id_meca NUMBER NOT NULL,
+                     naziv_sporta VARCHAR(35),
+                     dogadaj VARCHAR(100),
+                     vrijeme_meca DATE NOT NULL,
+                     domacin VARCHAR(35),
+                     gost VARCHAR(35),
+                     pojedini_igrac VARCHAR(35),
+                     kvota_1 decimal,
+                     kvota_x decimal,
+                     kvota_2 decimal,
+                     tt1 decimal,
+                     pm3 decimal,
+                     zx1 decimal,
+                     penal decimal,
+                     CONSTRAINT pk_meca PRIMARY KEY (id_meca)
+                     );
+
+CREATE TABLE statistika (id_meca NUMBER NOT NULL,
+                         poena_1 NUMBER,
+                         poena_2 NUMBER,
+                         prolazno_vrijeme decimal,
+                         broj_setova NUMBER
+                         korneri_1 NUMBER,
+                         korneri_2 NUMBER,
+                         );
+
+CREATE TABLE cjeline (id_cjeline NUMBER NOT NULL,
+					  id_opklade number not null,
+					  id_meca number not null,
+					  ishod VARCHAR(35)
+                     );
+
+CREATE TABLE arhiva_ponuda  ( id_arhiva_meca NUMBER NOT NULL,
+                              naziv_sporta VARCHAR(35),
+                              dogadaj VARCHAR(100),
+                              vrijeme_meca DATE NOT NULL,
+                              domacin VARCHAR(50),
+                              gost VARCHAR(50),
+                              pojedini_igrac VARCHAR(50),
+                              kvota_1 decimal,
+                              kvota_x decimal,
+                              kvota_2 decimal,
+                              tt1 decimal,
+                              pm3 decimal,
+                              zx1 decimal,
+                              penal decimal,
+                              korisnik VARCHAR(100),
+                              datum_promjene DATE,
+                              CONSTRAINT id_arhiva_meca_pk PRIMARY KEY (id_arhiva_meca)
+                            );
+
+CREATE TABLE arhiva_zaposlenici ( id_arhiva_zaposlenici NUMBER NOT NULL,
+                                ime VARCHAR(15) NOT NULL,
+                                prezime VARCHAR(25) NOT NULL,
+                                datum_rodjenja DATE NOT NULL,
+                                email VARCHAR(40),
+                                telefon VARCHAR(20),
+                                datum_zaposlenja DATE NOT NULL,
+                                id_posla NUMBER NOT NULL,
+                                plata NUMBER NOT null,
+                                id_menadzera NUMBER,
+                                id_poslovnice NUMBER NOT NULL,
+                                korisnik VARCHAR(100),
+                                datum_promjede DATE,
+                                CONSTRAINT pk_zaposlenog PRIMARY KEY (id_arhiva_zaposlenici)
+                               );
+
+-- read only 
+
+alter table arhiva_ponuda read only;
+alter table arhiva_zaposlenici read only;
+
+
+-- sekvence
+
+CREATE SEQUENCE sekvenca_zap
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_pos
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_lok
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_zem
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_kont
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_posl
+START WITH 10
+INCREMENT BY 10
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_kli
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_opk
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_pon
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+CREATE SEQUENCE sekvenca_cje
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE
+NOMINVALUE
+NOMAXVALUE;
+
+
+-- povezivanje tabela preko stranih kljuceva
+
+ALTER TABLE lokacije
+ADD CONSTRAINT fk_zemlje FOREIGN KEY (id_zemlje) REFERENCES zemlje(id_zemlje);
+
+ALTER TABLE cjeline
+ADD CONSTRAINT fk_opklade FOREIGN KEY (id_opklade) REFERENCES opklade(id_opklade);
+
+ALTER TABLE zemlje
+ADD CONSTRAINT fk_kontinenta FOREIGN KEY (id_kontinenta) REFERENCES kontinenti(id_kontinenta);
+
+
+ALTER TABLE poslovnice
+ADD CONSTRAINT fk_lokacije FOREIGN KEY (id_lokacije) REFERENCES lokacije(id_lokacije);
+
+ALTER TABLE zaposlenici
+ADD CONSTRAINT fk_menadzera FOREIGN KEY (id_menadzera) REFERENCES zaposlenici(id_menadzera);
+
+
+ALTER TABLE zaposlenici
+ADD CONSTRAINT fk_poslovnice FOREIGN KEY (id_poslovnice) REFERENCES poslovnice(id_poslovnice);
+
+
+ALTER TABLE poslovnice
+ADD CONSTRAINT fk_nadredjene_poslovnice FOREIGN KEY (id_nadredene_poslovnice) REFERENCES poslovnice(id_nadredene_poslovnice);
+
+
+ALTER TABLE klijenti
+ADD CONSTRAINT fk_poslovnice FOREIGN KEY (id_poslovnice) REFERENCES poslovnice(id_poslovnice);
+
+ALTER TABLE zaposlenici
+ADD CONSTRAINT fk_posla FOREIGN KEY (id_posla) REFERENCES poslovi(id_posla);
+
+ALTER TABLE opklade
+ADD CONSTRAINT fk_klijenta FOREIGN KEY (id_klijenta) REFERENCES klijenti(id_klijenta);
+
+ALTER TABLE cjeline
+ADD CONSTRAINT fk_meca FOREIGN KEY (id_meca) REFERENCES ponuda(id_meca);
+
+ALTER TABLE statistika
+ADD CONSTRAINT fk_meca FOREIGN KEY (id_meca) REFERENCES ponuda(id_meca);
+
+-- popunjavanje tabela
+
+  -- zaposlenici --
+
+
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Mao', 'Zetung', 'mzetung893@aol.com', '061-225-883',To_Date('26.12.1893', 'dd.mm.yyyy'), To_Date('08.12.2000', 'dd.mm.yyyy'), 7, 3300,0.2, 1, 10);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Leon', 'Goretzka',  'lgoretzka995@outlook.com', '062-342-589',To_Date('06.02.1995', 'dd.mm.yyyy'), To_Date('03.03.2005', 'dd.mm.yyyy'), 5, 2300,NULL, 1, 10);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Kasper', 'Hvidt', , 'khvidt976@yandex.com', '061-581-158',To_Date('06.02.1976', 'dd.mm.yyyy'), To_Date('05.07.2009', 'dd.mm.yyyy'), 4, 2300,NULL, 1, 50);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Natko', 'Zrncic', , 'nzrncic986@hotmail.com', '065-634-043',To_Date('07.03.1986', 'dd.mm.yyyy'), To_Date('06.11.2000', 'dd.mm.yyyy'), 2, 1460,0.15, 4, 20);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Mike', 'Pence',  'mpence959@aol.com', '066-752-481',To_Date('07.06.1959', 'dd.mm.yyyy'), To_Date('29.05.2000', 'dd.mm.yyyy'), 3, 2190, 2,4, 40);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Jose', 'Mujica', 'jmujica935@outlook.com', '062-419-481',To_Date('20.05.1935', 'dd.mm.yyyy'), To_Date('17.09.2000', 'dd.mm.yyyy'), 3, 2190,0.05, 4, 30);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Hope', 'Solo', 'hsolo981@hotmail.com', '062-525-532',To_Date('30.07.1981', 'dd.mm.yyyy'), To_Date('11.03.2000', 'dd.mm.yyyy'), 8, 1800,0.05, 2, 30);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Anthony', 'Hopkins', 'ahopkins937@outlook.com', '062-418-482',To_Date('31.12.1937', 'dd.mm.yyyy'), To_Date('09.06.2003', 'dd.mm.yyyy'), 9, 1500,NULL, 2, 30);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Mariah', 'Carey', 'mcarey969@hotmail.com', '061-574-852',To_Date('27.03.1969', 'dd.mm.yyyy'), To_Date('22.12.2008', 'dd.mm.yyyy'), 3, 2190,0.07, 3, 80);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Otto', 'Bismarck', 'obismarck815@aol.com', '063-583-472',To_Date('01.04.1815', 'dd.mm.yyyy'), To_Date('26.02.2009', 'dd.mm.yyyy'), 3, 2190,NULL, 1, 20);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Leonard', 'Kweuke', 'lkweuke987@mail.com', '061-525-626',To_Date('12.07.1987', 'dd.mm.yyyy'), To_Date('12.12.2004', 'dd.mm.yyyy'), 7, 1000,0.21, 1, 70);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Diego', 'Serrano', 'dserrano973@yahoo.com', '061-727-436',To_Date('05.02.1973', 'dd.mm.yyyy'), To_Date('15.01.2017', 'dd.mm.yyyy'), 8, 2000,NULL, 2, 40);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Maurice', 'Green', 'mgreen974@gmail.com', '065-265-573',To_Date('23.07.1974', 'dd.mm.yyyy'), To_Date('18.05.2013', 'dd.mm.yyyy'), 10, 730, NULL,5, 10);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Dusan', 'Pantelic', 'dpantelic993@gmail.com', '062-472-174',To_Date('15.04.1993', 'dd.mm.yyyy'), To_Date('04.12.2012', 'dd.mm.yyyy'), 10, 730,NULL,3, 90);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Jakob', 'Blaszczykowski', 'jblaszczykowski985@yandex.com', '062-637-163',To_Date('14.02.1985', 'dd.mm.yyyy'), To_Date('09.12.2015', 'dd.mm.yyyy'), 3, 2190, 0.1,4, 100);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Raymond', 'van Barneweldt', 'rvanbarneweldt967@aol.com', '064-731-832',To_Date('20.04.1967', 'dd.mm.yyyy'), To_Date('10.12.2011', 'dd.mm.yyyy'), 8, 1000, 0.3,4, 50);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Koffi', 'Annan', 'kannan938@gmail.com', '061-436-152',To_Date('08.04.1938', 'dd.mm.yyyy'), To_Date('11.12.2007', 'dd.mm.yyyy'), 2, 1460,NULL, 5, 20);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'James', 'Cook', 'jcook728@gmail.com', '063-535-747',To_Date('07.11.1728', 'dd.mm.yyyy'), To_Date('01.12.1997', 'dd.mm.yyyy'), 4, 2000, 2,3, 80);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Hector', 'Elizondo', 'helizondo936@gmail.com', '064-727-636',To_Date('22.12.1936', 'dd.mm.yyyy'), To_Date('05.12.2007', 'dd.mm.yyyy'), 7, 1800,NULL, 2, 30);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Raphael', 'Varane', 'rvarane993@outlook.com', '061-451-854',To_Date('25.11.1993', 'dd.mm.yyyy'), To_Date('30.12.2014', 'dd.mm.yyyy'), 10, 730, NULL,1, 90);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Gianni', 'Versace', 'gversace946@aol.com', '065-623-628',To_Date('02.12.1946', 'dd.mm.yyyy'), To_Date('31.12.2013', 'dd.mm.yyyy'), 2, 1460, NULL,4, 30);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Alexander', 'Rybak', 'arybak986@yandex.com', '062-824-808',To_Date('13.05.1986', 'dd.mm.yyyy'), To_Date('30.12.2017', 'dd.mm.yyyy'), 6, 1000,0.2, 1, 80);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Michael', 'van Gerwen', 'mvangerwen989@hotmail.com', '062-523-516',To_Date('26.04.1989', 'dd.mm.yyyy'), To_Date('30.12.2017', 'dd.mm.yyyy'), 1, 1000, NULL,NULL, 60);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Iosif', 'Vissarionovich', 'ivissarionovich878@mail.com', '063-727-311',To_Date('18.12.1878', 'dd.mm.yyyy'), To_Date('30.12.2017', 'dd.mm.yyyy'), 5, 1000, NULL,2, 50);
+
+INSERT INTO zaposlenici
+VALUES (sekvenca_zap.NEXTVAL, 'Dean', 'Winstanley', 'dwinstanley981@yaahoo.com', '063-725-417',To_Date('10.02.1981', 'dd.mm.yyyy'), To_Date('03.01.2017', 'dd.mm.yyyy'), 6, 2000,NULL, 1, 70);
+
+  -- poslovi --
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Vlasnik');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Zamjenik');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Savjetnik');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Sekretar');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Finansijski direktor');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Matematicar');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Potrcko');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Spediter');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Kasirka');
+
+INSERT INTO poslovi
+VALUES(sekvenca_pos.NEXTVAL, 'Portir');
+
+  -- lokacije --
+
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Avenida Bucareli 25', 'Ciudad de Juarez', 1,'2132','Distritto Federal');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'La Rambla 21', 'Barcelona', 2,'5732','Catalunya');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Dobrosevicka 56', 'Sarajevo', 3,'71000','Kanton Sarajevo');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Allen Street 224', 'Albany', 4,'53266','New York');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Shabolovka Uljica 13', 'Moskva', 5,'65143','Podmoskovye');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Gui Jie 412', 'Peking', 6,'3112-2','Hebei');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Berliner strasse 121', 'Bremen', 7,'7584','Bremerhaven');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Muizz 54', 'Cairo', 8,'42-32','El Qahira');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Al Qahira 23-4', 'Dubai', 9,'583-B','Al Wasl');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Vaci 321', 'Budimpesta', 10,'4523','Budim');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Moldovskaya 112', 'Kishyniev', 11,'64000','Kishyniev');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Eastern Lane 224', 'San Francisco', 4,'144472','California');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Shimo-Kitazawa 414B', 'Tokyo', 12,'5312XU','Gokishichido');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Jardín 31', 'Asuncion', 13,'63423','Asuncion');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Ovalo de Gutierrez 41-11A', 'Lima', 14,'312432-2','Limaa');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Numbering 52', 'Mogadisho', 15,'45674','Xamar');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'King Mswati III 12', 'Mbabane', 16,'31-97','Swazi');
+
+INSERT INTO lokacije
+VALUES (sekvenca_lok.NEXTVAL, 'Akagawa-Tennoujisen 325', 'Osaka', 12,'AR53412','Kansai');
+
+
+
+
+
+
+  -- zemlje --
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Mexico', 11.00, 4,'Pezos',0.044 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Spanija', 37.15, 1,'Pezos',0.044 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'BIH', 83.22, 1,'Marka',0.51 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'SAD', 12.22, 4,'Dolar',0.82 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Rusija', 27.72, 1,'Rublja',0.014 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Kina', 37.21, 2,'Renminbi',0.13 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Njemacka', 43.21, 1,'Euro',1 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Egipat', 64.42, 3,'Funta',1.13 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'UAE', 48.21, 2,'Dirhem',0.22 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Madjarska', 13.13, 1,'Forinta',0.0032 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Moldavija', 34.42, 1,'Lev',0.51 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Japan', 40.00, 2,'Jen',0.074 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Paragvaj', 22.12, 5,'Guarani',0.00015 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Cile', 11.15, 5,'Pezos',0.044 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Somalija', 10.30, 2,'Siling',0.0079 );
+
+INSERT INTO zemlje
+VALUES (sekvenca_zem.NEXTVAL, 'Swaziland', 11.11, 2,'Rand',0.067 );
+
+
+
+  -- kontinenti --
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Europa');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Azija');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Afrika');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Sjeverna Amerika');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Juzna Amerika');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Australija');
+
+INSERT INTO kontinenti
+VALUES (sekvenca_kont.NEXTVAL, 'Antarktik');
+
+  -- poslovnice --
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Glavna', 10000, NULL, 1);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Amerika glavna', 6000, 1, 4);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Euroazija glavna', 5700, 1, 2);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Afrika glavna', 20000, 1, 8);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Japanska glavna', 20000, 3, 18);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Americka glavna', 20000, 2, 12);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Bosanska', 1300, 3, 3);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Ruska', 20000, 3, 5);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Kineska', 1300, 3, 6);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Njemackaa', 20000, 2, 7);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Emiratska', 20000, 3, 9);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Madjarskaa', 1300, 3, 10);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Moldavska', 1300, 3, 11);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Japanska', 20000, 5, 13);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Paragvajska', 1300, 2, 14);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Cileanska', 1300, 2, 15);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Somalijska', 20000, 4, 16);
+
+INSERT INTO poslovnice
+VALUES (sekvenca_posl.NEXTVAL, 'Swazilandska', 1300, 4, 17);
+
+
+  -- klijenti --
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Wayne', 'Rooney', 323.12, 1);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Cristiano', 'Ronaldo', 151, 3);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Ronaldinho', 'Gaucho', 314, 2);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Abraham', 'Lincoln', 1352, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Francisco', 'Franco', 45, 7);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Vladimir', 'Putin', 63425, 8);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Kim', 'Jong-Un', 13552.34, 9);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Vidkun', 'Quisling', 21.74, 10);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Samuel', 'Etoo', 523, 18);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Mick', 'Jagger', 4135, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Ivanka', 'Trump', 7573, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Robinson', 'Crusoe', 51, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Makoto', 'Nagano', 53, 14);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Hans Kristian', 'Andersen', 133.1, 10);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Andy', 'Carroll', 463, 12);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Enrique', 'Navarro', 3134, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Ricky', 'Martin', 12314, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Siphiwe', 'Tshabalala', 4632.23, 6);
+
+INSERT INTO klijenti
+VALUES (sekvenca_kli.NEXTVAL, 'Nelson', 'Mandela', 1.01, 14);
+
+  -- opklade --
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 1, 50,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 3, 330,2.71, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 4, 2,3.18, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 5, 3124,5.89, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 6, 42,8.11, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 7, 3552,2.44, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 8, 5432,1.11, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 9, 42,2.32, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 10, 42,3.11, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 11, 53,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 12, 15,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 13, 57,1.82, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 14, 45,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 15, 535,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 1, 61,7.32, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 17, 61,10.10, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 18, 642,22.22, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 1, 326,2.22, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 3, 634,2.33, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 4, 52,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 5, 12,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 6, 6421,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 7, 530,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 8, 531,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 9, 523,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 10, 424,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 11, 535,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 12, 352,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 13, 532,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 14, 4124,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 15, 24,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 1, 2,2.23, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 17, 32,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 18, 85,1.43, SYSDATE);
+
+INSERT INTO opklade
+VALUES (sekvenca_opk.NEXTVAL, 19, 93,2.21, SYSDATE);
+
+-- pm3 preko 3 gola u fudbalu, preko 3 seta u tenisu, preko 50 golova u rukometu, preko 200 koseva u kosarci, preko 5 golova u futsalu, preko 5 golova u hokeju
+-- tt1 je nesto za sve timske sportove
+-- 
+
+-- ponuda
+
+
+                     kvota_1 decimal,
+                     kvota_x decimal,
+                     kvota_2 decimal,
+                     tt1 decimal,
+                     pm3 decimal,
+                     zx1 decimal,
+                     penal decimal,
+                                                              
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Liga Sampiona, 1/8 finala', To_Date('07/02/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Real Madrid', 'Paris Saint Germain', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Rukomet', 'HBL 17. kolo', To_Date('13/02/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Bosna Visoko', 'Zrinjski', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Odbojka', 'Italija 1.liga', To_Date('11/02/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Piacenza', 'Bologna', NULL, 2.65, NULL, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Tenis', 'Roland Garros 1/2 finala', To_Date('17/02/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Roger Federer', 'Alexandar Zverev', NULL, 2.65, NULL, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAl, 'Trke pasa', 'Purina Seattle 1. kolo', To_Date('07/02/2018 20:45:00','DD/MM/YYYY HH:MI:SS'), NULL, NULL,'Doggie dog' , 1.77, NULL, 4.21, NULL, NULL, NULL, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Trke konja', 'London masters', To_Date('22/02/2018 20:45:00','DD/MM/YYYY HH:MI:SS'), NULL, NULL, 'Great conqueror', 2.65, NULL, 4.70, 2.25, NULL, NULL, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Hokej', 'NHL 14. kolo', To_Date('01/02/2018 22:00:00','DD/MM/YYYY HH:MI:SS'), 'Pittsburgh','Ottawa',NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Futsal', 'Njemacka 1. liga', To_Date('05/02/2018 22:00:00','DD/MM/YYYY HH:MI:SS'), 'Wolfsberger', 'Karslruher', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Kosarka', 'NBA 1/4 finala', To_Date('07/02/2018 04:30:00','DD/MM/YYYY HH:MI:SS'), 'Golden State Warriors', 'Cleveland Cavaliers', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Rukomet', 'EHF Liga Sampiona', To_Date('09/02/2018 18:00:00','DD/MM/YYYY HH:MI:SS'), 'Magdeburg', 'Pick Szeged', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);  
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Europa Liga kvalifikacije', To_Date('12/06/2018 12:00:00','DD/MM/YYYY HH:MI:SS'), 'Bramapojkarna', 'CSKA Sofija', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Tenis', 'New Delhi masters 1/8 finala', To_Date('12/06/2018 12:00:00','DD/MM/YYYY HH:MI:SS'), 'Albert Ramos Vinolas', 'Donald Young' , NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Hokej', 'NHL 14. kolo', To_Date('01/01/2018 00:00:00','DD/MM/YYYY HH:MI:SS'), 'New York Islanders', 'Green Bay Peckers', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL); 
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Futsal', 'Premijer liga BiH, 3.kolo', To_Date('15/03/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Saobracajac', 'Vrbanjusa', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Premijer Liga BiH, 8.kolo', To_Date('12/03/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Sarajevo', 'Mladost', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Premijer Liga BiH, 8.kolo', To_Date('85/03/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Velez', 'Borac', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Tenis', 'Roland Garros 1/2 finala', To_Date('11/03/2018 15:00:00','DD/MM/YYYY HH:MI:SS'), 'Rafael Nadal', 'Novak Djokovic', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAl, 'Odbojka', 'IVA liga 3. kolo', To_Date('27/03/2018 20:45:00','DD/MM/YYYY HH:MI:SS'), 'Salvatoriana', 'Milano', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Liga Sampiona, polufinale', To_Date('12/03/2018 20:45:00','DD/MM/YYYY HH:MI:SS'), 'Borussia Dortmund', 'Atletico Madrid',NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Tenis', 'Umag Open', To_Date('19/04/2018 22:00:00','DD/MM/YYYY HH:MI:SS'), 'Aldin Setkic', 'Janko Tipsarevic', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Kosarka', 'NBA 1/4 finala', To_Date('21/04/2018 22:00:00','DD/MM/YYYY HH:MI:SS'), 'Boston Celtics', 'Los Angeles Lakers', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Rusija 1.liga ', To_Date('17/04/2018 04:30:00','DD/MM/YYYY HH:MI:SS'), 'Anzhi Mahakchala', 'Spartak Moskva', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Premijer Liga BiH, 8.kolo', To_Date('01/01/2018 18:00:00','DD/MM/YYYY HH:MI:SS'), 'Siroki Brijeg', 'Mladost Doboj Kakanj', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);  
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'Premijer Liga BiH, 8.kolo', To_Date('12/06/2018 12:00:00','DD/MM/YYYY HH:MI:SS'), 'Radnik Bijeljina', 'Celik Zenica', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Kosarka', 'NBA 1/4 finala', To_Date('12/06/2018 12:00:00','DD/MM/YYYY HH:MI:SS'), 'Memphis Grizllies', 'Chicago Bulls' , NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);
+
+INSERT INTO ponuda
+VALUES (sekvenca_pon.NEXTVAL, 'Fudbal', 'WC U21 finale', To_Date('01/01/2018 00:00:00','DD/MM/YYYY HH:MI:SS'), 'Srbija', 'Brazil', NULL, 2.65, 2.04, 4.70, 2.25, NULL, 1.86, NULL);  
+
+
+                     
+
+
+  -- statistika 
+
+INSERT INTO statistika
+VALUES (5, NULL, NULL,2.32,NULL, NULL, NULL );                        -- Trke pasa
+
+INSERT INTO statistika
+VALUES (10, 29, 31, NULL,NULL, NULL, NULL );                          -- Rukomet
+
+INSERT INTO statistika
+VALUES (15, 2, 4, NULL, NULL, 5, 11 );                                -- Fudbal
+
+INSERT INTO statistika
+VALUES (20, 3, 1, NULL, 4, NULL, NULL );                              -- Tenis
+
+INSERT INTO statistika
+VALUES (25, 110, 91, NULL, NULL, NULL, NULL );                        -- Kosarka
+
+  -- Cjeline --
+
+
+                                          
+					  id_opklade number not null,
+					  id_ponuda number not null,
+					  ishod VARCHAR(45)
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 2, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 3, '1');   
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 3, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 4, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 5, '2');
+    
+INSERT INTO cjeline  
+VALUES (sekvenca_cje.nextval, 3, 7, '1');
+
+INSERT INTO cjeline   
+VALUES (sekvenca_cje.nextval, 3, 8, '1');
+    
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 4, 4, '2');    
+
+INSERT INTO cjeline     
+VALUES (sekvenca_cje.nextval, 5, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 5, 12, '1');    
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 6, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 12, '1');   
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 2, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 3, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 4, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 5, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 6, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 9, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 11, '2');
+
+INSERT INTO cjeline           
+VALUES (sekvenca_cje.nextval, 9, 9, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 9, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 9, 11, '2');
+
+INSERT INTO cjeline           
+VALUES (sekvenca_cje.nextval, 10, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 2, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 3, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 4, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 5, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 6, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 2, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 1, 3, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 3, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 4, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 2, 5, '2');
+
+INSERT INTO cjeline 
+VALUES (sekvenca_cje.nextval, 3, 7, '1');
+
+INSERT INTO cjeline  
+VALUES (sekvenca_cje.nextval, 3, 8, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 4, 4, '2');     
+
+INSERT INTO cjeline      
+VALUES (sekvenca_cje.nextval, 5, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 5, 12, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 6, 11, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, , 12, '2');  
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 2, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 3, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 4, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 5, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 7, 6, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 9, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 8, 11, '2');
+
+INSERT INTO cjeline            
+VALUES (sekvenca_cje.nextval, 9, 9, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 9, 11, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 9, 11, '2');
+
+INSERT INTO cjeline            
+VALUES (sekvenca_cje.nextval, 10, 1, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 2, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 3, '2');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 4, '1');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 5, 'x');
+
+INSERT INTO cjeline
+VALUES (sekvenca_cje.nextval, 10, 6, '2');
+
+
+
+
+-- upiti --
+
+  -- 10 proizvoljnih upita --
+
+      -- Svi uposleni koji rade u Africi --
+
+SELECT z.ime || ' ' || z.prezime as "Naziv zaposlenog", z.plata
+FROM zaposlenici z, poslovnice p, lokacije l,kontinenti k,zemlje u
+WHERE z.id_poslovnice = p.id_poslovnice and p.id_lokacije = l.id_lokacije and l.id_zemlje=u.id_zemlje and u.id_kontinenta=k.id_kontinenta and l.grad='Afrika';
+
+		  -- Prikaz svih klijenata i njihovih stanja racuna sortirajuci po stanju racuna (u opadajucem poretku) --
+
+SELECT k.id_klijenta, k.ime_klijenta || ' ' || k.prezime_klijenta AS "Naziv klijenta", k.stanje_racuna
+FROM klijenti k
+ORDER BY k.stanje_racuna DESC;
+
+		  -- Prikaz statistike svih odigranih meceva ili meceva koji su u toku --
+
+SELECT s.broj_poena_1, s.broj_poena_2, s.prolazno_vrijeme, s.broj_setova, s.broj_kartona_1, s.broj_kartona_2
+FROM ponuda p, statistika s
+WHERE p.id_meca = s.id_meca AND p.vrijeme_meca < sysdate;
+
+
+      -- Prikaz klijenata po kontinentu --
+
+SELECT k.ime || ' ' || k.prezime "Klijent" , DECODE(k.ime_kontinenta, 'Afrika', 'AF','Europa', 'EU','Azija', 'AZ','Sjeverna Amerika', 'SA','Juzna Amerika', 'JA','Australija', 'AU','Antarktik', 'AN')									                                                           
+FROM klijenti k, kontinenti ko
+WHERE k.id_kontinenta = ko.id_kontinenta;
+
+-- Prikaz svih podataka o zaposlenicima do kojih firma preko baze podataka moze doci --
+
+SELECT *
+FROM zaposlenici z, poslovi pos, poslovnice p, lokacije l, zemlje z, kontinenti k
+WHERE z.id_posla = pos.id_posla and z.id_poslovnice = p.id_poslovnice AND p.id_lokacije = l.id_lokacije AND l.id_zemlje = z.id_zemlje AND z.id_kontinenta = k.id_kontinenta
+
+      -- Prikaz zaposlenih i njihovih sefova sa desnim spajanjem --
+
+SELECT z.ime || ' ' || z.prezime "Naziv zaposlenog", z.id_zaposlenog "Sifra zaposlenog", s.ime || ' ' || s.prezime "Naziv sefa", s.id_zaposlenog "Sifra sefa", l.grad "Grad sefa"
+FROM zaposlenici z, zaposlenici s, poslovnice p, lokacije l
+WHERE z.id_zaposlenog = s.id_zaposlenog(+) AND e.id_poslovnice = s.id_poslovnice(+) AND p.id_lokacije = l.id_lokacije(+);
+
+      --  Prikaz svih zaposlenih koji su se zaposlili prije direktora firme --
+
+SELECT z.ime || ' ' || z.prezime "Naziv zaposlenog", s.ime || ' ' || s.prezime "Naziv sefa", z.datum_zaposlenja "Datum zaposlenja"
+FROM zaposlenici z, zaposlenici s
+WHERE s.ime = 'Petar' AND s.prezime = 'Pejovic' AND z.datum_zaposlenja < s.datum_zaposlenja;
+
+
+		  -- Prikaz kojim danima se klijenti najvise klade --
+
+SELECT uplata, To_Char(vrijeme_opklade,'DAY')
+FROM opklade
+ORDER BY DECODE(To_Char(vrijeme_opklade,'Dy'),'Mon', '1',
+					                                    'Tue', '2',
+					                                    'Wed', '3',
+					                                    'Thu', '4',
+					                                    'Fri', '5',
+					                                    'Sat', '6',
+					                                    'Sun', '7' );
+
+      -- Prikaz plata svih zaposlenih preko indikatora '*' --
+
+SELECT  z.ime || ' ' || z.prezime "Naziv zaposlenog", z.plata "Plata", LPad('*', Round(z.plata/1000), '*') Indikator
+FROM zaposlenici z;
+
+      -- Prikaz zaposlenih iz odjela 10 i 20 njihovih trenutnih plata i plata koje bi zeljeli imati --
+
+SELECT z.ime || ' ' || z.prezime || ' prima platu ' || z.plata || ' mjesecno, ali on bi zelio platu ' ||
+       To_Char(z.plata *(1+Nvl(e.commission_pct,0))*4.5) || '.' AS "Plata o kojoj mozes sanjati"
+FROM zaposlenici a
+WHERE z.id_poslovnice IN (10, 20);
+
+      
+
+
+
+    -- 5 upita sa grupnim funkcijama --
+
+      -- Suma svih stanja racuna poslovnica iz BiH
+
+SELECT p.naziv_poslovnice ,Sum{p.stanje_racuna)
+FROM poslovnice p, lokacije l, zemlje z
+WHERE z.naziv_zemlje LIKE 'BiH'
+GROUP BY p.naziv_poslovnice;
+
+
+      -- Prikaz prosjecnih stanja racuna poslovnica koje se nalaze u Europi kojim je stanje racuna manje od 15000 --
+
+SELECT z.naziv_zemlje, Avg(p.stanje_racuna)
+FROM poslovnice p, lokacije l, zemlje z, kontinenti k
+WHERE p.id_lokacije = l.id_lokacije AND l.id_zemlje = z.id_zemlje AND z.id_kontinenta = k.id_kontinenta AND k.naziv_kontinenta LIKE 'Europa'
+GROUP BY z.naziv_zemlje
+HAVING Avg(p.stanje_racuna) < 15000;
+
+    
+      -- Prikaz klijenata cija je prosjecna uplata manja od 10 sortiranih u rastucem poretku po uplati --
+
+SELECT k.ime , k.prezime, Avg(o.uplata)
+FROM opklade o, klijenti k
+WHERE o.id_klijenta = k.id_klijenta
+GROUP BY k.ime, k.prezime
+HAVING Avg(uplata) < 10
+ORDER BY o.uplata;
+
+
+      -- Prikaz meceva i broja meceva koji su prosli --
+
+SELECT id_meca, Count(p.id_meca)
+FROM ponuda p
+where p.vrijeme_meca < sysdate
+GROUP BY id_meca;
+
+  -- Prikaz maksimalnih plata zaposlenih po poslovnicama za one gdje je maksimalna plata veca od 2500 --
+
+SELECT z.id_poslovnice, Max(z.plata)
+FROM zaposlenici z
+GROUP BY z.id_poslovnice
+HAVING Max(z.plata) > 2500;
+
+
+
+
+  -- 5 upita sa koristenjem podupita --
+
+      -- Prikaz zaposlenih kojim je pata veca od maksimalne plate 3. poslovnice --
+
+SELECT z.id_zaposlenog, z.ime || ' ' || z.prezime AS "Ime zaposlenog"
+FROM zaposlenici z
+WHERE z.plata > (SELECT Max(z1.plata)
+                 FROM zaposlenici z1
+                 where z1.id_poslovnice = 3);
+
+      -- Prikaz svih poslovnica cije je stanje racuna manje od sume svih stanja racuna klijenata koji su registrirani u toj poslovnici --
+
+SELECT p.id_poslovnice, p.naziv_poslovnice
+FROM  poslovnice p
+where p.stanje_racuna < ( SELECT Sum(k.stanje_racuna)
+                          FROM klijenti k, poslovnice p1
+                          WHERE k.id_poslovnice = p1.id_poslovnice AND p1.id_poslovnice = p.id_poslovnice);
+
+
+
+      -- Prikaz klijenata cije je stanje racuna manje od prosjecnog stanja racuna svih klijenata pomnozenog sa 0.1 --
+
+SELECT k.id_klijenta, k.ime || ' ' || k.prezime AS "Naziv klijenta"
+FROM  klijenti k
+WHERE k.stanje_racuna < (SELECT Avg(k1.stanje_racuna) * 0.1
+                         from klijenti k1);
+
+
+      -- Prikaz zaposlenih i njihovih poslova cije se poslovnice nalaze u Sarajevu --
+
+SELECT z.id_zaposlenog "Sifra zaposlenog", z.ime_zaposlenog || ' ' || z.prezime_zaposlenog "Naziv zaposlenog", p.naziv_posla "Naziv posla"
+FROM zaposlenici z, poslovi p
+WHERE z.id_posla = p.id_posla AND z.id_poslovnice IN (SELECT pos.id_poslovnice
+                                                      FROM poslovnice pos, lokacije l
+                                                      WHERE pos.id_lokacije = l.id_lokacije AND l.grad LIKE 'Sarajevo'):
+
+ -- Prikaz svih zaposlenih koji su stariji od svojih sefova --
+
+SELECT *
+FROM zaposlenici z
+where z.datum_rodenja < (SELECT z1.datum_rodenja
+                         FROM zaposlenici z1
+                         WHERE z.id_menadzera = z1.id_zaposlenog);
+
+
+
+  -- 5 upita sa vise od jednog nivoa podupita --
+
+      -- Azurira platu direktora firme na prosjecnu platu poslovnice 1 --
+
+UPDATE zaposlenici z
+SET z.plata = (SELECT Avg(plata)
+               FROM zaposlenici z1
+               WHERE z1.id_poslovnice = (SELECT p.id_poslovnice
+                                         FROM poslovnice p
+                                         WHERE p.id_poslovnice = 1));
+WHERE z.id_zaposlenog = 1;
+
+      
+
+      -- Postavljanje poreza u zemlji Mexico na vrijednost poreza kao u zemlji Njemacka --
+
+UPDATE zemlje z
+SET z.porez = (SELECT z2.porez
+               FROM zemlje z2
+               WHERE z2.id_zemlje = (SELECT z3.id_zemlje
+                                     FROM zemlje z3
+                                     WHERE z3.naziv_zemlje LIKE 'Njemacka'))
+WHERE z.naziv_zemlje LIKE 'Mexico';
+
+    -- U posljednjoj odigranoj opkladi koju je odrigrao klijent 3 dodaje vrijednost uplate 90 --
+
+UPDATE opklade o
+SET o.uplata = 90
+WHERE id_opklade = (SELECT id_opklade
+                    FROM opklade o
+                    WHERE o.id_klijenta = 3 AND o.vrijeme_opklade = (SELECT Max(o1.vrijeme_opklade)
+                                                                     FROM opklade o1));
+
+-- Povecava stanje racuna svih poslovnica za 10% koji se nalaze na kontinentima Afrika, Azija, Antartika ili Australija --
+
+UPDATE poslovnice p
+SET p.stanje_racuna = p.stanje_racuna * 1.1
+WHERE  p.id_poslovnice = (SELECT p1.id_poslovnice
+                          FROM poslovnice p1, lokacije l, zemlje z, kontinenti k
+                          WHERE p1.id_lokacije = l.id_lokacije AND l.id_zemlje = z.id_zemlje AND z.id_kontinenta = k.id_kontinenta AND k.naziv_kontinenta IN (SELECT kon.naziv_kontinenta
+                                                                                                                                                    FROM kontinenti kon
+                                                                                                                                                           WHERE kon.naziv_kontinenta LIKE 'A%'))
+
+      -- Slucajno odabranom klijentu (dio pod where) nadodaje na stanje racuna vrijednos svih uplata koje je klijent izvrsio od kad se posljednji zaposlenik zaposlio --
+
+UPDATE klijenti k
+SET k.stanje_racuna = k.stanje_racuna + (SELECT Sum(o.uplata)
+                                         FROM klijenti k1, opklade o
+                                         WHERE o.id_klijenta = k1.id_klijenta AND k1.id_klijenta = k.id_klijenta AND o.vrijeme_opklade > (SELECT Max(z.datum_zaposlenja)
+                                                                                                                                          FROM zaposlenici z )
+WHERE k.id_klijenta = Trunc(rand()*(SELECT Count(k2.id_klijenta)
+                                    FROM klijenti k2)+1)
+
+  -- 2 upita sa subtotalima --
+
+SELECT l.id_lokacije, p.id_poslovnice, SUM(k.stanje_racuna)
+FROM klijenti k, poslovnie p, lokacije l
+WHERE k.id_poslovnice = p.id_poslovnice AND p.id_lokacije = l.id_lokacije
+GROUP BY ROLLUP (l.id_lokacije, p.id_polsovnice)
+ORDER BY l.id_lokacije, p.id_poslovnice;
+
+SELECT l.id_lokacije, p.id_poslovnice, SUM(k.stanje_racuna)
+FROM klijenti k, poslovnie p, lokacije l
+WHERE k.id_poslovnice = p.id_poslovnice AND p.id_lokacije = l.id_lokacije
+GROUP BY CUBE (l.id_lokacije, p.id_polsovnice)
+ORDER BY l.id_lokacije, p.id_poslovnice;
+
+  -- 2 upita sa TOP N analizom
+
+ -- Prikaz 3 najmladja zaposlenika u poslovnici 3 --
+
+SELECT ROWNUM AS Rank, id, ime, prezime
+FROM (SELECT z.id_zaposlenog id, z.ime ime, z.prezime prezime
+      FROM zaposlenici z
+      WHERE z.id_poslovnice = 3
+      ORDER BY z.datum_rodenja desc)
+WHERE ROWNUM <= 3;
+
+      -- Prikaz pet klijenata sa najvecim stanjima racuna --
+
+SELECT ROWNUM AS Rank, id, stanje
+FROM (SELECT id_klijenta id, stanje_racuna stanje
+      FROM klijenti
+      ORDER BY stanje_racuna DESC)
+WHERE ROWNUM <= 5;
+
+     
+
+  -- 1 upit sa koristenjem UNION, SET --
+
+SELECT id_meca, naziv_sporta
+FROM ponuda
+	UNION
+SELECT id_arhiva_meca, naziv_sporta
+FROM arhiva_ponuda;
+
+-- 5 indexa --
+
+CREATE INDEX index_ponuda
+ON ponuda (id_meca);
+
+CREATE INDEX index_zaposlenih
+ON zaposlenici (id_zaposlenog);
+
+CREATE INDEX index_opklade
+ON opklade (id_opklade, id_klijenta);
+
+CREATE INDEX index_poslovnice
+ON poslovnice (id_poslovnice, id_nadredene_poslovnice);
+
+CREATE INDEX index_klijenta
+ON klijenti (id_klijenta, id_poslovnice);
+
+
+
+
+
+--10 triggera --
+
+CREATE OR REPLACE TRIGGER zab_insert_zaposlenici_trig
+BEFORE INSERT ON zaposlenici
+BEGIN
+  IF(To_Char(SYSDATE, 'DY') IN ('SAT','SUN') OR (To_Char(SYSDATE, 'HH24') NOT BETWEEN '08' AND '18'))
+  THEN Raise_Application_Error (-20500, 'Dodavanje zaposlenih nije dozvoljeno neradnim danima ili radnim izmedu 18h i 8h');
+  END IF;
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER up_insert_klijenti_trig
+before INSERT ON klijenti
+FOR EACH ROW
+BEGIN
+  :new.id_klijenta := sekvenca_kli.NEXTVAL;
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER zab_update_poslovnice_trig
+BEFORE UPDATE ON poslovnice
+BEGIN
+  IF(To_Char(SYSDATE, 'DY') IN ('SAT','SUN') OR (To_Char(SYSDATE, 'HH24') NOT BETWEEN '08' AND '18'))
+  THEN Raise_Application_Error (-20502, 'Dodavanje zaposlenih nije dozvoljeno neradnim danima ili radnim izmedu 18h i 8h');
+  END IF;
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER arhiva_zaposlenici_trig
+AFTER UPDATE OR DELETE ON zaposlenici
+REFERENCES OLD AS OLD NEW AS NEW
+FOR EACH ROW
+BEGIN
+	INSERT INTO arhiva_zaposlenici
+	VALUES (:old.id_zaposlenog, :old.ime, :old.prezime, :old.datum_rodenja, :old.email, :old.telefon, :old.datum_zaposlenja, :old.plata, user, sysdate);
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER up_insert_zaposlenici_trig
+before INSERT ON zaposlenici
+FOR EACH ROW
+BEGIN
+  :new.id_zaposlenog := sekvenca_zap.NEXTVAL;
+COMMIT;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER up_insert_opklade_trig
+before INSERT ON opklade
+FOR EACH ROW
+BEGIN
+  :new.id_opklade := sekvenca_opk.NEXTVAL;
+COMMIT;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER zab_delete_cjeline_trig
+BEFORE DELETE ON cjeline
+BEGIN
+  IF (To_Char(SYSDATE, 'HH24') NOT BETWEEN '08' AND '18')
+  THEN Raise_Application_Error (-20501, 'Brisanje listiva nije dozvoljeno izmedu 18h i 8h');
+  END IF;
+COMMIT;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER arhiva_ponuda_trig
+AFTER UPDATE OR DELETE ON ponuda
+REFERENCES OLD AS OLD NEW AS NEW
+FOR EACH ROW
+BEGIN
+	INSERT INTO arhiva_ponuda
+	VALUES(:old.id_meca, :old.naziv_sporta, :old.dogadaj, :old.vrijeme_meca, :old.domacin, :old.gost, :old.pojedini_igrac, :old.k_1, :old.k_2, :old.k_vise_od_3_gola, :old.k_vise_od_198_koseva, :old.k_oba_daju_gol, :old.k_vise_od_2_seta, k_vise_od_8_kornera, :old.k_bit_ce_penal, user, sysdate);
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER up_insert_ponuda_trig
+before INSERT ON opklade
+FOR EACH ROW
+BEGIN
+  :new.id_meca := sekvenca_pon.NEXTVAL;
+COMMIT;
+END;
+/
+
+CREATE OR REPLACE TRIGGER up_insert_poslovnice_trig
+before INSERT ON opklade
+FOR EACH ROW
+BEGIN
+  :new.id_lokacije := sekvenca_posl.NEXTVAL;
+COMMIT;
+END;
+/
+
+-- 10 funkcija --
+
+
+
+	-- funkcija vraca ko i kad je promjenio mec iz ponude (unos id_meca) --
+CREATE OR REPLACE FUNCTION daj_korisnika_promjene_meca_fun(id_meca in ponuda.id_meca%TYPE)
+RETURN varchar IS
+	ko_i_kad varchar(100) :='' ;
+BEGIN
+	SELECT a.korisnik || ' ' || to_char(a.datum_promjene, 'dd.mm.yyyy')
+	INTO ko_i_kad
+	FROM arhiva_ponuda a
+	WHERE a.id_arhiva_meca = id_meca
+
+	RETURN (ko_i_kad);
+END daj_korisnika_promjene_meca_fun;
+/
+
+
+	-- funkcija koja prima id_poslovnice a vraca maximalnu platu zaposlenika koji radi u toj poslovnice --
+CREATE OR REPLACE FUNCTION daj_max_platu_u_odjelu(id_poslovnice in number)
+RETURN number IS
+	max_plata number :=0 ;
+BEGIN
+	SELECT MAX(z.salary)
+	INTO max_plata
+	FROM zaposlenici z, poslovnice p
+	WHERE p.id_poslovnice = id_poslovnice
+		  AND z.id_poslovnice = p.id_poslovnice
+
+	RETURN(max_plata);
+END daj_max_platu_u_odjelu;
+/
+
+	-- funckija koja vraca ime i prezime zaposlenog (unos id_zaposlenog) --
+CREATE OR REPLACE FUNCTION daj_ime_zaposlenog_fun (id_zaposlenog in number)
+RETURN varchar IS
+	zap.naziv varchar(100) :='' ;
+BEGIN
+	SELECT z.ime || ' ' || z.prezime
+	INTO zap.naziv
+	FROM zaposlenici z
+	WHERE z.id_zaposlenog = id_zaposlenog;
+
+	RETURN (zap.naziv);
+END daj_ime_zaposlenog_fun;
+/
+
+	-- funkcija vraca ko i kad je promjenio red nekog zaposlenog(unos id_zaposlenog) --
+CREATE OR REPLACE FUNCTION daj_korisnika_promjene_zaposlenika(id_zaposlenog in zaposlenici.id_zaposlenog%TYPE)
+RETURN varchar IS
+	ko_i_kad varchar(100) :='' ;
+BEGIN
+	SELECT a.korisnik || ' ' || to_char(a.datum_promjene, 'dd.mm.yyyy')
+	INTO ko_i_kad
+	FROM arhiva_zaposlenici a
+	WHERE a.id_arhiva_zaposlenog = id_zaposlenog
+
+	RETURN (ko_i_kad);
+END daj_korisnika_promjene_zaposlenika;
+/
+
+
+	-- funkcija koja prima staro stanje racuna i id_poslovnice a vraca razliku stanja racuna izmedju sadasnjeg stanja racuna i poslanog stanja racuna
+	-- ako se posalje stanje racuna prije sedam dana, ova funkcija ce vracati sedmicni prihod poslovnice
+
+CREATE OR REPLACE FUNCTION daj_sedmicni_prihod(id_poslovnice IN poslovnice.id_poslovnice%TYPE,
+											   stanje_racuna IN poslovnice.stanje_racuna%TYPE)
+RETURN number IS
+	prihod number :=0 ;
+BEGIN
+	SELECT stanje_racuna + p.stanje_racuna
+	INTO prihod
+	FROM poslovnice p
+	WHERE p.id_poslovnice = id_poslovnice
+
+	RETURN (prihod);
+END daj_sedmicni_prihod;
+/
+
+
+	-- funkcija koja prima id_lokacije i vraca poruku u kojoj pise koliko ima klijenata koji su registrirani u toj lokaciji cije je stanje racuna vece od 2000 --
+CREATE OR REPLACE FUNCTION klijenti_preko_2000_fun(id_lokacije IN lokacije.id_lokacije%TYPE)
+RETURN varchar IS
+	ret_poruka VARCHAR(1000) :='' ;
+	broj_klijenata_preko_2000 :=0 ;
+CURSOR cur IS
+	SELECT Count(*)
+	FROM klijenti k, poslovnice p, lokacije l
+	WHERE k.id_poslovnice = p.id_poslovnice
+		  AND p.id_lokacije = l.id_lokacije
+		  AND l.id_lokacije = id_lokacije
+		  AND k.stanje_racuna >= 2000;
+BEGIN
+	OPEN cur;
+	FETCH cur INTO broj_klijenata_preko_2000;
+	CLOSE cur;
+
+	IF( broj_klijenata_preko_2000 > 1)
+	THEN ret_poruka := CONCAT(CONCAT('U lokacija koja ima id = '),id_lokacije), ' nema klijenata koji imaju stanje racuna preko 2000.');
+	ELSE
+	 ret_poruka := CONCAT(CONCAT(CONCAT(CONCAT('U lokacija koja ima id = ', id_lokacije), ' ima '), broj_klijenata_preko_2000), ' klijenata sa stanjem racuna preko 2000.');
+	END IF;
+
+	RETURN (ret_poruka);
+END	klijenti_preko_2000_fun;
+/
+	-- funkcija koja vraca poruku da li u unesenoj poslovnici ima netko da nema sefa --
+CREATE OR REPLACE FUNCTION koliko_bez_sefova_fun(id_poslovnice in poslovnice.id_poslovnice%TYPE)
+RETURN VARCHAR IS
+	ret_poruka VARCHAR(1000) :='' ;
+	broj_zaposlenih_bez_sefa number :=0 ;
+CURSOR cur IS
+	SELECT Count(*)
+	FROM zaposlenici z, zaposlenici s, poslovnice p
+	WHERE z.id_poslovnice = p.id_poslovnice
+		  AND z.id_menadzera = s.id_zaposlenog
+		  AND p.id_poslovnice = id_poslovnice;
+BEGIN
+	OPEN cur;
+	FETCH cur INTO broj_zaposlenih_bez_sefa;
+	CLOSE cur;
+
+	ret_poruka := CONCAT(CONCAT(CONCAT(CONCAT('U poslovnici koja ima id = ', id_poslovnice) ' ima ' ), broj_zaposlenih_bez_sefa), ' zaposlenih koji nemaju sefova.' );
+
+	RETURN (ret_poruka);
+END koliko_bez_sefova_fun;
+/
+
+	-- fukcija koja prima 2 poslovnice i vraca poruku koja ispisuje za koliko koja poslovnica ima vece stanje racuna --
+CREATE OR REPLACE FUNCTION poslovnica_veci_racun_i_za_koliko_fun (id_prva IN number, id_druga IN number)
+RETURN VARCHAR IS
+	ret_poruka VARCHAR(1000) :='' ;
+	stanje_prva number :=0 ;
+	stanje_druga number :=0 ;
+CURSOR cur_prva IS
+	SELECT p.stanje_racuna
+	FROM poslovnice p
+	WHERE p.id_poslovnice = id_prva;
+CURSOR cur_druga IS
+	SELECT p.stanje_racuna
+	FROM poslovnice p
+	WHERE p.id_poslovnice = id_druga;
+BEGIN
+	OPEN cur_prva;
+	FETCH cur_prva INTO stanje_prva;
+	CLOSE cur_prva;
+
+	OPEN cur_druga;
+	FETCH cur_druga INTO stanje_druga;
+	CLOSE cur_druga;
+
+	IF(stanje_prva > stanje_druga)
+	 THEN ret_poruka := CONCAT(CONCAT(CONCAT(CONCAT(CONCAT('Poslovnica koja ima id = ', id_prva), ' ima za ') stanje_prva - stanje_druga), ' vece stanje racuna nego poslovnica koja ima id = '), id_druga);
+	ELSIF(stanje_druga > stanje_prva)
+     THEN ret_poruka := CONCAT(CONCAT(CONCAT(CONCAT(CONCAT('Poslovnica koja ima id = ', id_druga), ' ima za ') stanje_druga - stanje_prva), ' vece stanje racuna nego poslovnica koja ima id = '), id_prva);
+	ELSE
+	 ret_poruka := 'Unesene kladionice imaju isto stanje racuna.';
+	END IF;
+
+	RETURN ret_poruka;
+END poslovnica_veci_racun_i_za_koliko_fun;
+/
+
+	-- Funkcija koja vraca broj zaposlenih koji rade u poslovnici sa id koji je primljen
+	-- kao parametar, a da su ti zaposleni poceli raditi prije svojih sefova
+
+CREATE OR REPLACE FUNCTION provjeri_datume_fun(id_poslovnice IN poslovnice.id_poslovnice%TYPE)
+RETURN VARCHAR IS
+    poruka_tmp VARCHAR(100) := '';
+    broj_ljudi NUMBER := 0;
+
+    CURSOR cur IS
+    	SELECT Count(*)
+    	FROM poslovnice p, zaposlenici z, zaposlenici z2
+    	WHERE p.id_poslovnice = id_poslovnice AND z.id_poslovnice = p.id_poslovnice AND z2.id_zaposlenog = z.id_menadzera
+    	AND z.datum_zaposlenja < z2.datum_zaposlenja;
+
+BEGIN
+    OPEN cur;
+    FETCH cur INTO broj_ljudi;
+    CLOSE cur;
+
+    IF broj_ljudi = 0
+	THEN
+     poruka_tmp := 'Ne postoji nijedan zaposleni da je poceo raditi prije sefa u ovom odjelu.';
+    ELSIF
+     poruka_tmp := Concat('Postoji ', Concat(broj_ljudi, ' ljudi koji su poceli raditi prije svog sefa u ovom odjelu.'));
+    END IF;
+
+    RETURN (poruka_tmp);
+END provjeri_datume_fun;
+/
+
+	-- Funkcija koja vraca porez zemlje sa navedenim id
+
+CREATE OR REPLACE FUNCTION daj_porez_fun(id_zemlje IN zemlje.id_zemlje%TYPE)
+RETURN NUMBER IS
+	porez NUMBER :=0;
+BEGIN
+	SELECT z.porez
+	INTO porez_tmp
+	FROM zemlje
+	WHERE z.id_zemlje = id_zemlje;
+
+	RETURN (porez);
+END daj_porez_fun;
+/
+
+-- 10 procedura --
+
+
+
+	-- Registruj novog klijenta primajuci neophodne podatke o njemu --
+CREATE OR REPLACE PROCEDURE registruj_klijenta_proc(ime IN klijenti.ime_klijenta%TYPE, prezime IN klijenti.prezime_klijenta%TYPE, id_poslovnice IN poslovnice.id_poslovnice%TYPE)  IS
+	postoji boolean;
+BEGIN
+
+	postoji = EXISTS  ( Select 'x'
+			   			FROM poslovnice p
+			   			WHERE p.id_poslovnice = id_poslovnice);
+
+	IF (postoji = FALSE)
+	THEN
+	 raise_application_error(-20700, 'Data poslovnica ne postoji!');
+	END IF;
+
+	INSERT INTO klijenti
+	VALUES (sek.klijenti.nextval, ime, prezime, 0, id_poslovnice);
+END registruj_klijenta_proc;
+/
+
+	-- Registruj novu opkladu --
+CREATE OR REPLACE PROCEDURE registruj_opkladu_proc(uplata in number, vrijeme_opklade DATE, id_klijenta IN klijenti.id_klijenta%TYPE) IS
+	postoji boolean;
+BEGIN
+
+	postoji = EXISTS  ( Select 'x'
+			   			FROM klijenti k
+			   			WHERE k.id_klijenta = id_klijenta);
+
+	IF (postoji = FALSE)
+	THEN
+	 raise_application_error(-20701, 'Dati klijent ne postoji!');
+	END IF;
+
+	if(uplata < 1)
+	THEN
+	 raise_application_error(-20702, 'Nemoguce uplatiti novac koji je manji od jednog pezosa!');
+	END IF;
+
+	INSERT INTO opklade
+	VALUES (sek.opklade.nextval, uplata, vrijeme_opklade, id_klijenta);
+
+END registruj_opkladu_proc;
+/
+	-- Nasumicno odabranom klijentu povecava stanje racuna za onoliko koliko glasi uneseni parametar --
+CREATE OR REPLACE PROCEDURE	povecaj_stanje_nasumicnom_proc (nagrada in number) IS
+
+	id_slucajnog number;
+
+BEGIN
+	id_slucajnog = Trunc(rand()*(SELECT Count(k.id_klijenta)
+                                    	FROM klijenti k)+1);
+	UPDATE klijenti k
+	SET k.stanje_racuna = k.stanje_racuna + nagrada
+	WHERE k.id_klijenta = id_slucajnog;
+
+END povecaj_stanje_nasumicnom_proc;
+/
+
+	-- Registruj novu poslovnicu --
+CREATE OR REPLACE PROCEDURE registruj_poslovnicu_proc (naziv_poslovnice IN poslovnice.naziv_poslovnice, stanje_racuna IN number, id_nadredene IN number, id_lokacije IN number) IS
+	postoji_nadredena boolean
+	postoji_lokacija  boolean
+BEGIN
+	postoji_nadredena = EXISTS (SELECT 'x'
+							  	FROM poslovnice p
+							  	WHERE p.id_poslovnice = id_poslovnice);
+	postoji_lokacija = EXISTS (Select 'x'
+							   FROM lokacije l
+							   WHERE l.id_lokacije = id_lokacije);
+
+	if(postoji_nadredene = false) THEN
+	 raise_application_error(-20703, 'Unesena nadredena poslovnica ne postoji!');
+	END IF:
+
+	if(postoji_lokacija = false) THEN
+	 raise_application_error(-20704, 'Unesena lokacija ne postoji!');
+	END IF;
+
+	INSERT INTO poslovnice
+	VALUES(sekvenca_posl.nextval, naziv_poslovnice, stanje_racun, id_nadredene, id_lokacije);
+
+END	registruj_poslovnicu_proc;
+/
+
+
+
+	-- procedura koja brise neprofitabilnte poslovnice --
+CREATE OR REPLACE PROCEDURE obrisi_neprofitabilne_poslovnice_proc (dozvoljeni_minus number) IS
+BEGIN
+	DELETE FROM poslovnice p
+	WHERE p.stanje_racuna < dozvoljeni_minus;
+END obrisi_neprofitabilne_poslovnice_proc;
+/
+-- procedura vrsi izmjenu poslovnice zaposlenom --
+CREATE OR REPLACE PROCEDURE promjeni_poslovnicu_zaposlenog_proc (id_zaposlenog IN number, id_nove_poslovnice IN number) IS
+	postoji_zaposlenici boolean;
+	postoji_poslovnica booleanl
+BEGIN
+	postoji_zaposlenici = EXISTS(SELECT 'x'
+							   FROM zaposlenici z
+							   WHERE z.id_zaposlenog = id_zaposlenog);
+	postoji_poslovnica = EXISTS(SELECT 'x'
+								FROM poslovnice p
+								WHERE p.id_poslovnice = id_nove_poslovnice);
+
+	if(postoji_zaposlenici = false) then
+	 raise_application_error(-20707, 'Uneseni zaposlenik ne postoji!');
+	ELSIF(postoji_poslovnica = false)
+	 raise_application_error(-20708, 'Unesena poslovnica ne postoji!');
+
+	UPDATE zaposlenici z
+	SET z.id_poslovnice = id_nove_poslovnice
+	WHERE z.id_zaposlenog = id_zaposlenog
+
+END	 promjeni_poslovnicu_zaposlenog_proc;
+/
+
+	-- procedura nagraduje nasumicno odabranog zaposlenika iz unesene lokacije dodavanjem unesene nagrade na platu --
+CREATE OR REPLACE PROCEDURE nagradi_zaposlenika (id_lokacije IN number, nagrada IN number) IS
+	postoji_lokacija boolean;
+BEGIN
+	postoji_lokacija = EXISTS (Select 'x'
+							   FROM lokacije l
+							   WHERE l.id_lokacije = id_lokacije);
+
+	if(postoji_lokacija = false) THEN
+	 raise_application_error(-20704, 'Unesena lokacija ne postoji!');
+	END IF;
+
+	UPDATE zaposlenici z
+	SET z.plata = z.plata + nagrada
+	WHERE z.id_zaposlenog = TRUNC(rand() * (SELECT Count(z2.id_zaposlenog)
+											FROM zaposlenici z2) + 1);
+END nagradi_zaposlenika;
+/
+	-- Skini uplatu od stanja racuna unsenog klijenta --
+CREATE OR REPLACE PROCEDURE izvrsi_uplatu_proc (id_klijenta in number, uplata in number, stanje in number) IS
+	postoji_klijent boolean;
+BEGIN
+	postoji = EXISTS  ( Select 'x'
+			   			FROM klijenti k
+			   			WHERE k.id_klijenta = id_klijenta);
+
+	IF (postoji = FALSE)
+	THEN
+	 raise_application_error(-20701, 'Dati klijent ne postoji!');
+	END IF;
+
+	if(uplata > stanje_racuna OR uplata < 1) then
+	 raise_applicatioin_error (-20705, 'Nemoguce izvrsiti uplatu!');
+
+	UPDATE klijenti k
+	set k.stanje_racuna = k.stanje_racuna - uplata
+	where k.id_klijenta = id_klijenta;
+
+END izvrsi_uplatu_proc ;
+/
+
+	-- procedura brise sve meceve koji su prosli --
+CREATE OR REPLACE PROCEDURE obrisi_prosle_meceve_proc () IS
+BEGIN
+	DELETE ponuda p
+	where p.vrijeme_meca < sysdate;
+END obrisi_prosle_meceve_proc;
+/
+
+	-- unesi statistiku za neki mec i obrisi taj mec --
+CREATE OR REPLACE PROCEDURE unesi_statistiku_proc (id_meca IN number, poena_1 IN NUMBER, poena_2 IN NUMBER, prolazno_vrijeme IN decimal, broj_setova IN NUMBER, korneri_1 IN NUMBER, korneri_2 IN NUMBER) IS
+	postoji_mec boolean
+BEGIN
+	postoji_mec = EXISTS (SELECT 'x'
+						  FROM ponuda p
+						  WHERE p.id_meca = id_meca);
+
+	if(postoji_mec = false) then
+	 raise_application_error(-20706, 'Dati mec ne postoji!');
+	END IF;
+
+	INSERT INTO statistika
+	VALUES (poena_1, poena_2, prolazno_vrijeme, broj_setova, korneri_1, korneri_2);
+
+END unesi_statistiku_proc;
+/
+
+	
+
+-- PL/SQL skripta --
+
+Nadam se da nema gramatickih gresaka a i ako ima da cete moci tolerisati iste. Hvala.

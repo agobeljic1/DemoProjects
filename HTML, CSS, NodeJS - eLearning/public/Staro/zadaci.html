@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+   <meta charset="utf-8">
+   <title>Zadaci</title>
+   <link href="zadaci.css" type="text/css" rel="stylesheet">   
+</head>
+<body>
+   
+        <div id="header">
+           <div id="logo">
+    
+           </div>
+           <div id="meni">
+                <div id="meni0">                
+                     <a id="linkMeni0" class="meniLink" href="login.html">Login</a>              
+                </div>
+                <div id="meni1">                
+                     <a id="linkMeni1" class="meniLink" href="studenti.html">Pregled studenata</a>              
+                </div>
+                <div id="meni2">                
+                     <a id="linkMeni2" class="meniLink" href="zadaci.html">Pregled zadataka</a>              
+                </div>          
+                <div id="meni3">                
+                     <a id="linkMeni3" class="meniLink" href="commiti.html">Pregled commita</a>              
+                </div>
+                <div id="meni4">                
+                     <a id="linkMeni4" class="meniLink" href="addZadatak.html">Dodavanje zadataka</a>              
+                </div>
+                <div id="meni5">                
+                     <a id="linkMeni5" class="meniLink" href="addVjezba.html">Dodavanje vjezbe</a>              
+                </div>
+                <div id="meni6">                
+                     <a id="linkMeni6" class="meniLink" href="addStudent.html">Dodavanje studenta</a>              
+                </div>
+                <div id="meni7">                
+                     <a id="linkMeni7" class="meniLink" href="addGodina.html">Dodavanje godina</a>              
+                </div>
+           </div>
+           <div id="naziv">
+                <p id="nazivPregled">Odabir vježbe</p>    
+            </div>
+        </div>
+
+        <div id="godinaa" class="cetvrtina">    
+            <div >
+                <div id="MainDiv" class="content">
+                    <p id="Odabir" class="Odabir" >Godina</p>
+                    <div id="ListDiv" class="ListScroll">                                    
+                            <ul id="godina" class="ListaScroll">
+                                <li class="ScrollItem">Godina 2014/15</li>
+                                <li class="ScrollItem">Godina 2015/16</li>
+                                <li class="ScrollItem">Godina 2016/17</li>
+                                <li class="ScrollItem">Godina 2017/18</li>
+                                <li class="ScrollItem">Godina 2018/19</li>
+                            </ul>                   
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div id="imenaa" class="cetvrtina">
+            <div >
+                <div id="mainDiv" class="content">                    
+                    <p id="odabir" class="Odabir" >Student</p>
+                    <form id="forma" action="#">
+                    <input id="input" value="text, name=query"><br/>
+                    <div id="greskaDiv"></div>
+                    <input id="button" type="submit" onclick="funkcijaSearch();" value="Search">
+                    
+                    </form>                    
+                    <div id="ListaDiv" class="ListScroll" >                                    
+                        <ul id="imena" class="ListaScroll" >
+                            <li class="ScrollItem">Ime i prezime | index </li>
+                            <li class="ScrollItem">Neko Nekić | 12345</li>
+                            <li class="ScrollItem">Neko Nekić | 12345</li>
+                            <li class="ScrollItem">Neko Nekić | 12345</li>
+                            <li class="ScrollItem">Neko Nekić | 12345</li>
+                        </ul>                   
+                    </div>
+                </div>    
+            </div>
+            
+        </div>
+        <div class="polovina">
+               
+                
+            <div class="folder" id="prviFolder">
+
+                <p id="VjezbePodnaslov" class="Podnaslov">Vježbe</p>
+                <div id="vjezbe">
+                   <div class="item"><div id="vjezba1" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 1</p></div></div>
+                   <div class="item"><div id="vjezba2" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 2</p></div></div>
+                   <div class="item"><div id="vjezba3" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 3</p></div></div>
+                   <div class="item"><div id="vjezba4" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 4</p></div></div>
+                   <div class="item"><div id="vjezba5" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 5</p></div></div>
+                   <div class="item"><div id="vjezba6" class="vjezbaKocka"><p class="vjezbaKockaP">Vježba 6</p></div></div>
+                </div>
+
+            </div>
+            <div class="folder" id="drugiFolder">
+                <p id="SpiralePodnaslov" class="Podnaslov">Spirale</p>
+                <div id="spirale">
+                    <div class="item"><div id="spirala1" class="vjezbaKocka"><p class="spiralaKockaP">Spirala 1</p></div></div>
+                    <div class="item"><div id="spirala2" class="vjezbaKocka"><p class="spiralaKockaP">Spirala 2</p></div></div>
+                    <div class="item"><div id="spirala3" class="vjezbaKocka"><p class="spiralaKockaP">Spirala 3</p></div></div>
+                    <div class="item"><div id="spirala4" class="vjezbaKocka"><p class="spiralaKockaP">Spirala 4</p></div></div> 
+                </div>
+            </div>
+            
+        </div>
+    
+        <footer id="footer">
+                <p>Web tehnologije 2018/19</p>               
+        </footer>
+       
+
+        <script src="zadaci.js"></script>
+        <script src="validacija.js"></script>
+       
+</body>
+
+</html>
+

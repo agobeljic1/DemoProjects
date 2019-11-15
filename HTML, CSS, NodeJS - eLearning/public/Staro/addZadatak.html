@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+   <meta charset="utf-8">
+   <title>Add zadatak</title>
+   <link href="addZadatak.css" type="text/css" rel="stylesheet">
+   
+</head>
+<body>
+   
+        <div id="header">
+           <div id="logo">
+    
+           </div>
+           <div id="meni">
+                <div id="meni0">                
+                     <a id="linkMeni0" class="meniLink" href="login.html">Login</a>              
+                </div>
+                <div id="meni1">                
+                     <a id="linkMeni1" class="meniLink" href="studenti.html">Pregled studenata</a>              
+                </div>
+                <div id="meni2">                
+                     <a id="linkMeni2" class="meniLink" href="zadaci.html">Pregled zadataka</a>              
+                </div>          
+                <div id="meni3">                
+                     <a id="linkMeni3" class="meniLink" href="commiti.html">Pregled commita</a>              
+                </div>
+                <div id="meni4">                
+                     <a id="linkMeni4" class="meniLink" href="addZadatak.html">Dodavanje zadataka</a>              
+                </div>
+                <div id="meni5">                
+                     <a id="linkMeni5" class="meniLink" href="addVjezba.html">Dodavanje vjezbe</a>              
+                </div>
+                <div id="meni6">                
+                     <a id="linkMeni6" class="meniLink" href="addStudent.html">Dodavanje studenta</a>              
+                </div>
+                <div id="meni7">                
+                     <a id="linkMeni7" class="meniLink" href="addGodina.html">Dodavanje godina</a>              
+                </div>
+           </div>
+           <div id="naziv">
+               <p id="nazivPregled">Dodavanje zadatka</p>    
+           </div>
+        </div>
+        <div id="contentt">
+            <div id="glavniSadrzaj">
+                <div id="panel">
+                    <form id="noviZadatak"  method="POST" enctype="multipart/form-data" action="/addZadatak">
+
+                        <p id="noviZadatakk">Novi zadatak</p>
+                        <div id="odvojeno">
+                            <p id="nazivZadatka">Naziv zadatka</p>
+                            <input id="input1" type="text" required name="naziv" value="type=text, name=naziv *">
+                            <div id="greskaDiv"></div>
+                            <p id="tekstPostavke" >Tekst postavke *</p>
+                            <input id="postavka" name="postavka" type="file" required>                            
+                            <p id="tekstPostavkeee">Vježbe/Spirale</p>
+                            <select name="menuu">
+                                <option value="0" selected>Vježba X</option>
+                                <option value="1">Vježba I</option>
+                                <option value="2">Vježba II</option>
+                                <option value="3">Vježba III</option>                               
+                                </select>                         
+                        </div>
+                        
+                        <div id="buttonGrid">
+                            <div id="prvaa"></div>
+                            <div id="drugaa">
+                                 <input id="dodajButton" onclick="funkcijaDodaj();" type="submit" name="submit" value="Dodaj">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    
+        
+    
+        <footer id="footer">
+                <p>Web tehnologije 2018/19</p>               
+        </footer>
+       
+
+        <script src="addZadatak.js"></script>
+        <script src="validacija.js"></script>
+       
+</body>
+
+</html>
+

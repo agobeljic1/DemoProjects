@@ -1,0 +1,364 @@
+
+
+#logo
+{
+    content: "";
+    margin-left:10px;
+    margin-top:10px;
+    background-image:url('logo.png');    
+    background-size: 100% 100%;
+    display: inline-block;
+    height: 60px;
+    width:80px;    
+}
+#header
+{
+    grid-area: header;
+    background-color:rgb(252, 211, 99);
+    display: grid;
+    grid-template-areas:
+    'logo'
+    'meni'   
+    'naziv';
+  
+   
+}
+#meni
+{
+    grid-area: meni;
+    display:flex;
+ 
+    justify-content: space-around;
+    width:100vw;
+}
+a.meniLink
+{
+    font-weight: bold;
+    font-size:0.55em;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(75, 75, 75);
+    margin-left:0.7vw;    
+}
+#meni0
+{
+    grid-area: meni0;
+    margin-left:8px;    
+}
+#meni1
+{
+    grid-area: meni1;
+      
+}
+#meni2
+{
+    grid-area: meni2;    
+    
+}
+#meni3
+{
+    grid-area: meni3;   
+    
+}
+#meni4
+{
+    grid-area: meni4;
+       
+}
+#meni5
+{
+    grid-area: meni5;    
+    
+}
+#meni6
+{
+    grid-area: meni6;   
+
+}
+#meni7
+{
+    grid-area: meni7;
+    
+}
+#contentt
+{
+    grid-area: contentt;
+}
+#logo
+{
+    grid-area: logo;
+}
+#meni
+{
+    grid-area: meni;
+}
+#naziv
+{
+    grid-area: naziv;
+}
+
+#nazivPregled
+{   font-weight: bold;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:rgb(75, 75, 75);
+    margin-left:10px;
+   
+}
+/*
+a.meniLink
+{
+    font-weight: bold;
+    font-size:0.95em;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(75, 75, 75);
+    
+}*/
+#footer
+{
+    grid-area: Kraj;
+    background-color:rgb(252, 211, 99);
+    /*:rgb(252, 211, 99);*/
+    margin-bottom:0;
+}
+
+#nova,#postojeca,#poveziNova
+{
+    font-size: 1.2em;
+    text-align: center;
+    padding-top:2vw; 
+   
+}
+#odvojeno,#odvojeno1,#odvojeno5
+{
+    margin-left:5vw;
+    margin-bottom:3vw;
+}
+select
+{
+    padding-right:45px;
+}
+#ListScroll
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    border:1px solid #000;
+    font-family:arial;
+    
+    width:25vw;
+    overflow-y: hidden;
+    text-align: left;
+    
+
+}
+.ScrollItem
+{       
+    text-align: left; 
+    line-height: 20px;   
+}
+#ListaScroll
+{
+   
+    margin:0;
+    width:100%;
+    padding:0;
+    text-indent:10px;
+    background-color: white;    
+    overflow-y: scroll;   
+}
+#inlineDiv
+{
+    display:grid;
+    grid-template-areas: 
+    'prvidiv drugidiv';
+    
+}
+#prviDiv{grid-area: prvidiv;width:25vw;}
+#prvij
+{
+    display:inline-flex;
+}
+#inlineDiv
+{
+    display:inline-flex;
+    
+}
+#buttonGrid2
+{
+    display:inline;
+}
+#special
+{
+    display: inline-flex;
+    margin-bottom:10px;
+}
+#dodajButton1
+{
+    float:right;
+    margin-right:10px;
+}
+#dodajButton2
+{
+    float:right;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+#dodajButton3
+{
+    float:right;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+#prvij
+{
+    margin-bottom:10px;
+}
+#prviDiv
+{
+    margin-right:10px;
+}
+
+
+
+
+
+body
+    {
+        margin:0;
+        display: grid;
+        grid-template-areas:
+        'header'
+        'contentt'    
+        'Kraj';
+        height:100%;
+    }
+
+
+#footer
+{
+    grid-area: Kraj;
+    background-color:rgb(252, 211, 99);
+    /*:rgb(252, 211, 99);*/
+    margin-bottom:0;
+}
+
+
+
+#nazivPregled
+{   font-weight: bold;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:rgb(75, 75, 75);
+    margin-left:10px;
+   
+}
+/*
+
+a.meniLink
+{
+    font-weight: bold;
+    font-size:0.95em;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(75, 75, 75);
+    
+}
+*/
+
+#footer
+{
+    text-align: center;
+}
+
+
+
+
+#contentt
+{
+    background-color: rgb(159, 154, 235);
+}
+#glavniSadrzaj
+{
+    width:100vw;
+    background-color:rgb(219, 240, 241);
+    margin-left:0vw;
+    margin-right:0vw;    
+  
+    
+    margin-bottom:0;
+    padding-top:0.2vw;
+    padding-bottom:2vw;
+}
+#panel1,#panel2,#panel3
+{
+    background-color: rgb(198, 218, 219);
+    margin-right:10vw;
+    margin-left:10vw;
+    margin-top:5vw;
+    
+    width:80vw;
+    box-shadow: 3px 3px rgb(59, 66, 66);  
+    
+}
+#dodajButton
+{
+    float:right;
+    margin-right:10px;
+    margin-bottom:10px;
+ 
+    
+}
+#dodajButton2,#dodajButton3
+{
+    float:right;
+    margin-right:10px;
+    margin-bottom:10px;
+    
+}
+#inlinepanel
+{
+    height: 8vh;
+}
+
+
+
+
+@media screen and (min-width: 600px) {    
+    
+    #nazivPregled
+    {   
+        margin-top:10px;
+        margin-right:10px;
+        float:right;       
+    }
+    #header
+    {
+    grid-area: header;
+    background-color:rgb(252, 211, 99);
+    display: grid;
+    grid-template-areas:
+    'logo naziv'
+    'meni meni'        
+    ;    
+    }
+    #glavniSadrzaj
+    {
+        width:85vw;    
+        margin-left:7.5vw;
+        margin-right:7.5vw;
+    }
+    #panel1,#panel2,#panel3
+    {
+        margin-right:5vw;
+        margin-left:5vw;
+        margin-top:5vw;
+    
+        width:75vw;
+    }
+    a.meniLink
+    {
+        font-size:0.8em;
+    }
+
+}

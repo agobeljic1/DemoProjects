@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Projekat</string>
+    <string name="dPretragaT">Pretraga</string>
+    <string name="dDodajKategorijuT">Dodaj kategoriju</string>
+    <string name="dDodajKnjiguT">Dodaj knjigu</string>
+    <string name="imeAutoraT">Ime autora</string>
+    <string name="nazivKnjigeT">Naziv knjige</string>
+    <string name="dNadjiSlikuT">Nadji sliku</string>
+    <string name="dPonistiT">Ponisti</string>
+    <string name="dUpisiKnjiguT">Dodaj</string>
+    <string name="dPovratakT">Povratak</string>
+    <string name="ToastUpisiKnjiguT">Prvo dodajte kategorije</string>
+    <string name="dKategorijeT">Kategorije</string>
+    <string name="dAutoriT">Autori</string>
+    <string name="dImeiPrezimeT">Ime i prezime autora</string>
+    <string name="dBrojKnjigaT">Broj knjiga autora</string>
+    <string name="dNazivKnjigeT">Naziv knjige</string>
+    <string name="dDodajOnlineT">Dodaj online</string>
+    <string name="tekstUpitT">Trazi</string>
+    <string name="dpovratakT">Povratak</string>
+    <string name="dRunT">Pretraga</string>
+    <string name="dDodajKnjiguuT">Dodaj knjigu</string>
+    <string name="dDatumObjavljivanjaT">Datum objavljivanja</string>
+    <string name="dOpisT">Opis</string>
+    <string name="dBrojStranicaT">Broj stranica</string>
+    <string name="dPreporuciT">Preporuci</string>
+    <string name="dPosaljiT">Posalji</string>
+    <string name="sKontaktiT">Kontakti</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

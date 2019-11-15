@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Project</string>
+    <string name="dPretragaT">Search</string>
+    <string name="dDodajKategorijuT">Add category</string>
+    <string name="dDodajKnjiguT">Add book</string>
+    <string name="imeAutoraT">Author name</string>
+    <string name="nazivKnjigeT">Book name</string>
+    <string name="dNadjiSlikuT">Find image</string>
+    <string name="dPonistiT">Cancel</string>
+    <string name="dUpisiKnjiguT">Add</string>
+    <string name="dPovratakT">Back</string>
+    <string name="ToastUpisiKnjiguT">First add categories</string>
+    <string name="dKategorijeT">Categories</string>
+    <string name="dAutoriT">Authors</string>
+    <string name="dImeiPrezimeT">Author full name</string>
+    <string name="dBrojKnjigaT">Number of authors books</string>
+    <string name="dNazivKnjigeT">Book title</string>
+    <string name="dDodajOnlineT">Add online</string>
+    <string name="tekstUpitT">Trazi</string>
+    <string name="dpovratakT">Back</string>
+    <string name="dRunT">Pretraga</string>
+    <string name="dDodajKnjiguuT">Add book</string>
+    <string name="dDatumObjavljivanjaT">Publishing date</string>
+    <string name="dOpisT">Description</string>
+    <string name="dBrojStranicaT">Page count</string>
+    <string name="dPreporuciT">Recommend</string>
+    <string name="dPosaljiT">Send</string>
+    <string name="sKontaktiT">Contacts</string>
+</resources>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<title>Login</title>
+<meta charset="utf-8">
+<link href="login.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    
+<div id="login">
+<form>
+    <div class="item">      
+        <table>    
+            <tr>
+                <td colspan="2"><label for="username">username</label></td>
+                <td colspan="2"><input id="username" name="username" type="text"></td>        
+            </tr>
+            <tr>
+                <td colspan="2"><label  for="password">password</label></td>
+                <td colspan="2"><input id="password"  name="password" type="password"></td>        
+            </tr>
+            <tr>   
+                <td></td>   
+                <td></td>    
+                <td> </td>             
+                <td><input id="loginButton" type="button" onclick="funkcijaLogin();" name="login" value="Login"></td> 
+                                
+            </tr>           
+            
+            
+        </table> 
+        <div id="greskaDiv">
+
+        </div> 
+      
+    </div>
+    
+</form>
+</div>
+
+
+
+
+<script src="login.js"></script>
+<script src="validacija.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+   <meta charset="utf-8">
+   <title>Commiti</title>
+   <link href="commiti.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+   
+        <div id="header">
+           <div id="logo">
+    
+           </div>
+           <div id=meniii>
+                <div id="meni0">                
+                     <a id="linkMeni0" class="meniLink" href="login.html">Login</a>              
+                </div>
+                <div id="meni1">                
+                     <a id="linkMeni1" class="meniLink" href="studenti.html">Pregled studenata</a>              
+                </div>
+                <div id="meni2">                
+                     <a id="linkMeni2" class="meniLink" href="zadaci.html">Pregled zadataka</a>              
+                </div>          
+                <div id="meni3">                
+                     <a id="linkMeni3" class="meniLink" href="commiti.html">Pregled commita</a>              
+                </div>
+                <div id="meni4">                
+                     <a id="linkMeni4" class="meniLink" href="addZadatak.html">Dodavanje zadataka</a>              
+                </div>
+                <div id="meni5">                
+                     <a id="linkMeni5" class="meniLink" href="addVjezba.html">Dodavanje vjezbe</a>              
+                </div>
+                <div id="meni6">                
+                     <a id="linkMeni6" class="meniLink" href="addStudent.html">Dodavanje studenta</a>              
+                </div>
+                <div id="meni7">                
+                     <a id="linkMeni7" class="meniLink" href="addGodina.html">Dodavanje godina</a>              
+                </div>
+           </div>
+           <div id="naziv">
+               <p id="nazivPregled">Pregled commita</p>    
+           </div>
+        </div>
+        <div id="main">
+            <p class="Opis">Student: Neko Nekić, 1234</p>
+            <p class="Opis">Naziv vježbe/spirale: Vježba 1</p>
+            <p class="Opis">Repozitorij: <a id="linkic" href="https://bitbucket.org/">hyperlink</a></p> 
+
+            <div class="Opis" id="forms">
+                      <br/>
+                      <label class="Opis">Kreiraj tabelu</label>
+                      <form action="#">
+                      <input id="ZadaciCreate" type="number" placeholder="Broj zadataka">
+                      <div id="GreskaCreate"></div>                     
+                      <input type="button" value="Kreiraj" onclick="createTable();">
+                    </form>
+                 
+                      <br/>
+                      
+                      <label class="Opis">Dodaj commit</label>
+                      <form action="#">
+                      <input id="ZadaciAdd" type="number" placeholder="Broj zadatka">                      
+                      <input id="UrlAdd" type="text" placeholder="Url">
+                      <div id="GreskaAdd"></div>  
+                      <input id="buttonAdd" type="button" value="Dodaj" onclick="addCommit();" disabled>
+                    </form>
+                       <br/>
+                       <label class="Opis">Edituj commit</label>
+                       <form action="#">
+                       <input id="ZadaciEdit" type="number" placeholder="Broj zadatka">
+                       <input id="CommitiEdit" type="number" placeholder="Broj commita">
+                       <input id="UrlEdit" type="text" placeholder="Url">
+                       <div id="GreskaEdit"></div>  
+                       <input id="buttonEdit" type="button"  value="Edituj" onclick="editCommit();" disabled>
+                    </form>
+                       <br/>
+                       <label class="Opis">Obrisi commit</label>
+                       <form action="#">
+                       <input id="ZadaciDelete" type="number" placeholder="Broj zadatka">
+                       <input id="CommitiDelete" type="number" placeholder="Broj commita">
+                       <div id="GreskaDelete"></div>  
+                       <input id="buttonDelete" type="button" value="Obrisi" onclick="deleteCommit();" disabled>
+                    </form>
+            </div>
+            <div id="tabela">
+
+
+
+
+            </div>
+                 
+        </div>        
+        <footer id="footer">
+                <p>Web tehnologije 2018/19</p>               
+        </footer>
+        <script src="committabela.js"></script>
+        <script src="commiti.js"></script>
+        <script src="validacija.js"></script>
+
+        
+       
+</body>
+
+</html>

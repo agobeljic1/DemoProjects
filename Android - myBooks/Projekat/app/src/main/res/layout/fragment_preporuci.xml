@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/lll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+
+
+
+    <ImageView
+        android:id="@+id/eeNaslovna"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/egLay"
+        android:layout_alignTop="@id/egLay"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/grof_monte_cristo" />
+    <LinearLayout
+        android:id="@+id/eegLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/eeNaslovna"
+        android:layout_marginStart="10dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/eeNaziv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/dNazivKnjigeT"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/eeAutor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/dImeiPrezimeT" />
+
+        <TextView
+            android:id="@+id/eeDatumObjavljivanja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dDatumObjavljivanjaT" />
+
+        <TextView
+            android:id="@+id/eeBrojStranica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dBrojStranicaT" />
+
+
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/eeOpis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lll"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+
+        android:scrollbars = "vertical"
+
+        android:text="@string/dOpisT" />
+
+    <Spinner
+    android:id="@+id/sKontakti"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/eeOpis"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+
+    android:text="@string/sKontaktiT" />
+
+
+    <Button
+        android:id="@+id/dPosalji"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/dPosaljiT"
+        android:backgroundTint="@color/colorRounded_button"/>
+
+
+
+
+</RelativeLayout>

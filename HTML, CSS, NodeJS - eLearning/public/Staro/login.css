@@ -1,0 +1,177 @@
+body
+{
+    background-color:rgb(0, 102, 255);
+}
+#login
+{    
+    width: 300px;
+    height:200px;     
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color:rgb(239, 243, 245);   
+}
+
+.item1{     
+    
+    width:100%;
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+   
+    position: absolute;
+    top:30%;
+    right:15%;
+    left:0%;
+}
+.item2{     
+    width:100%;
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    
+    position: absolute;
+    top:50%;
+    right:15%;
+    left:0%;
+ 
+}
+.item3{     
+    
+    position: absolute;
+    left:60%;
+    right:0%;
+    top:70%;
+    
+}
+input,button
+{
+    border-radius: 5px;
+    border:1px solid grey;
+     
+}
+button
+{
+    background-color:rgb(239, 243, 245); 
+}
+table{
+   
+    width: 100px;
+    height:100px; 
+    position: absolute;
+    left:10%;
+    top:25%;
+   
+}
+#loginButton
+{
+    float:right;
+    width:50%;
+    height:80%;
+}
+.label
+{
+    font-size: 3em;
+}
+
+
+
+/*
+
+ <div class="item1">
+           <label for="username">username</label>     
+           <input id="username" name="username" type="text">       
+       </div>
+       <div class="item2">
+            <label  for="password">password</label>
+            <input id="password"  name="password" type="password">
+        </div>
+        <div class="item3">
+                <button name="login" type="button">Login</button>
+        </div>
+        */
+
+
+
+
+/*.item1{     
+ 
+    margin:0 auto;   
+    position: absolute;
+    left:10%;
+    right:0%;
+    top:30%;
+}
+.item2{  
+    height:70%;     
+    width:50%;
+   
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;}
+.item3{   
+    height:0%;     
+   
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;}
+
+
+*/
+
+    /*
+       <div class="item2">
+           <label  for="password">password</label>
+           <input id="password" name="password" type="password">
+       </div>     
+       <div class="item3"><button name="login" type="button">Login</button></div> 
+       */
+
+
+
+/*
+
+.item1{    grid-area: item1;}
+.item2{    grid-area: item2;}
+.item3{    grid-area: item3;}
+.item4{    grid-area: item4;}
+.item5{    grid-area: item5;}
+.item6{    grid-area: item6;}
+.item7{    grid-area: item7;}
+.item8{    grid-area: item8;}
+.item9{    grid-area: item9;}
+.item10{    grid-area: item10;}
+.item11{    grid-area: item11;}
+.item12{    grid-area: item12;}
+
+
+
+
+*/
+
+/*
+ grid-template-areas:
+      'item1 item1 item1 item1 item1 item1 item1 item1'
+      'item2 item2 item2 item2 item2 item2 item2 item2'
+      'item3 item3 item3 item3 item3 item3 item3 item3'
+      'item4 item4 item4 item4 item4 item4 item4 item4'
+      'item5 item5 item5 item5 item5 item5 item5 item5'
+      'item6 item6 item6 item6 item6 item6 item6 item6'
+      'item3 item1 item1 item1 item1 item1 item1 item1'
+      'secondheader secondheader secondheader'
+      'menu menu main'
+      'menu menu main'
+      'footer footer footer'; */
+
+
+
+/*
+form
+{    
+    width:73%;
+    height:50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;   
+}
+*/

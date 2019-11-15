@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Spinner
+            android:id="@+id/sKategorije"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/tekstUpit"
+            android:hint="@string/tekstUpitT"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sKategorije"
+            android:layout_marginTop="15dp"
+            />
+
+        <Spinner
+            android:id="@+id/sRezultat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@+id/tekstUpit"
+            android:layout_marginTop="65dp"/>
+
+        <Button
+            android:id="@+id/dRun"
+            android:text="@string/dRunT"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sRezultat"
+            android:layout_centerHorizontal="true"
+
+
+
+
+            android:backgroundTint="@color/colorRounded_button"/>
+
+
+
+        <Button
+            android:id="@+id/dPovratak"
+            android:text="@string/dpovratakT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+
+
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/colorRounded_button"/>
+
+        <Button
+            android:id="@+id/dAdd"
+            android:text="@string/dDodajKnjiguuT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/dPovratak"
+            android:layout_alignEnd="@+id/tekstUpit"
+            android:backgroundTint="@color/colorRounded_button"
+            />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
+
+
+</LinearLayout>

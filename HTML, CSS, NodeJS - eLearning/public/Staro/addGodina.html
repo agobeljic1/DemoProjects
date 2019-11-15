@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+   <meta charset="utf-8">
+   <title>Add godina</title>
+   <link href="addGodina.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+   
+        <div id="header">
+           <div id="logo">
+    
+           </div>
+          
+           <div id="meni">
+                <div id="meni0">                
+                     <a id="linkMeni0" class="meniLink" href="login.html">Login</a>              
+                </div>
+                <div id="meni1">                
+                     <a id="linkMeni1" class="meniLink" href="studenti.html">Pregled studenata</a>              
+                </div>
+                <div id="meni2">                
+                     <a id="linkMeni2" class="meniLink" href="zadaci.html">Pregled zadataka</a>              
+                </div>          
+                <div id="meni3">                
+                     <a id="linkMeni3" class="meniLink" href="commiti.html">Pregled commita</a>              
+                </div>
+                <div id="meni4">                
+                     <a id="linkMeni4" class="meniLink" href="addZadatak.html">Dodavanje zadataka</a>              
+                </div>
+                <div id="meni5">                
+                     <a id="linkMeni5" class="meniLink" href="addVjezba.html">Dodavanje vjezbe</a>              
+                </div>
+                <div id="meni6">                
+                     <a id="linkMeni6" class="meniLink" href="addStudent.html">Dodavanje studenta</a>              
+                </div>
+                <div id="meni7">                
+                     <a id="linkMeni7" class="meniLink" href="addGodina.html">Dodavanje godina</a>              
+                </div>
+           </div>
+           <div id="naziv">
+               <p id="nazivPregled">Dodavanje godine</p>    
+           </div>
+        </div>
+        <div id="side">
+            <div id="content">
+                <p id="Odabir" >Unos godine:</p>
+                <div id="ListScroll"> 
+                    <form action="/addGodina" method="POST" enctype="application/x-www-form-urlencoded">                  
+                        <label for="input11" class="blackLabel">Naziv godine</label><br/>
+                    <input id="input11" class="input10" type="text" name="nazivGod" required><br/> <br/>                     
+                    
+                    <label for="input22" class="blackLabel">Naziv repozitorija vježbe</label><br/>
+                    <input id="input22" class="input10" type="text" name="nazivRepVje" required> <br/><br/> 
+                    <label for="input33" class="blackLabel">Naziv repozitorija spirale</label><br/>
+                    <input id="input33" class="input10" type="text" name="nazivRepSpi" required>  <br/>  <br/>  
+                    <div id="greskaDiv"></div>
+                    <div id="buttonDiv">
+                        <button id="resetButton" type="reset">Poništi</button>
+                        <button id="submitButton" onclick="funkcijaUnosGodine();" type="submit">Unesi</button>
+                    </div>
+                </form>                    
+                                     
+                </div>
+            </div>
+    
+        </div>
+        <div id="glavniSadrzaj">
+            <div id="contentGlavni">
+                <div class="godina">
+                    <div id="Kocka1" class="Kockaa">  
+                        <p class="popo">2015/16</p>   
+                        <p class="popo"><b>Broj studenata:</b> 90</p> 
+                        <p class="popo"><b>Broj vježbi:</b> 10</p> 
+                        <p class="popo"><b>Broj spirala:</b> 4</p>  
+                    </div>
+                </div>
+                <div class="godina">
+                    <div id="Kocka2" class="Kockab">
+                        <p class="popo">2016/17</p>   
+                        <p class="popo"><b>Broj studenata:</b> 90</p> 
+                        <p class="popo"><b>Broj vježbi:</b> 10</p> 
+                        <p class="popo"><b>Broj spirala:</b> 4</p> 
+                    </div>
+                </div>
+                <div class="godina">
+                    <div id="Kocka3" class="Kockaa">
+                              
+                    </div>
+                </div>
+                <div class="godina">
+                    <div id="Kocka4" class="Kockab">
+                                
+                    </div>
+                </div>                     
+            </div>
+        </div>
+        <footer id="footer">
+                <p>Web tehnologije 2018/19</p>               
+        </footer>
+
+        
+        <script src="addGodina.js"></script>
+        <script src="validacija.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/colorGrey"
+    tools:context="ba.unsa.etf.rma.adnangobeljic.projekat.KategorijeAkt">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Glavni"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="17dp"
+        >
+
+
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/prviLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="376dp"
+                tools:layout_editor_absoluteY="75dp">
+
+
+                <Button
+                    android:id="@+id/dKategorije"
+                    android:layout_width="119dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorRounded_button"
+                    android:text="@string/dKategorijeT"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintEnd_toStartOf="@id/dAutori"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <Button
+                    android:id="@+id/dAutori"
+                    android:layout_width="132dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorRounded_button"
+                    android:text="@string/dAutoriT"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dKategorije"
+                    tools:layout_editor_absoluteY="16dp" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/drugiLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="150dp"
+                tools:layout_editor_absoluteY="300dp">
+
+
+                <EditText
+                    android:id="@+id/tekstPretraga"
+                    android:layout_width="119dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/dPretragaT"
+
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toStartOf="@id/dPretraga"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="9dp" />
+
+                <Button
+                    android:id="@+id/dPretraga"
+                    android:layout_width="132dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorRounded_button"
+                    android:text="@string/dPretragaT"
+
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tekstPretraga"
+                    tools:layout_editor_absoluteY="8dp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/treciLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="376dp"
+                tools:layout_editor_absoluteY="75dp">
+
+
+                <Button
+                    android:id="@+id/dDodajKategoriju"
+                    android:layout_width="119dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorRounded_button"
+                    android:text="@string/dDodajKategorijuT"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintEnd_toStartOf="@id/dDodajKnjigu"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <Button
+                    android:id="@+id/dDodajKnjigu"
+                    android:layout_width="132dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorRounded_button"
+                    android:text="@string/dDodajKnjiguT"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dDodajKategoriju"
+                    tools:layout_editor_absoluteY="16dp" />
+            </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/cetvrtiLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="300dp">
+
+            <Button
+                android:id="@+id/dDodajOnline"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorRounded_button"
+                android:text="@string/dDodajOnlineT"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dDodajKategoriju"
+                tools:layout_editor_absoluteY="16dp" />
+
+        </LinearLayout>
+            <ListView
+                android:id="@+id/listaKategorija"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="304dp" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+

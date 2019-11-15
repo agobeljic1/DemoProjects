@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: KORISNIK
+Build-Jdk: 12.0.2
+Implementation-Title: Goblex Rent a Car
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: io.adnangobeljic.springbootprograms
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/rent-a-car/
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,4 @@
+#Sat Sep 21 13:47:00 CEST 2019
+base.0=E\:\\hologram_diplomski\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+renamed.0=classes.dex
+path.0=classes.dex

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/naslovnaStr"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+
+            android:layout_marginTop="16dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <EditText
+            android:id="@+id/imeAutora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/naslovnaStr"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/naslovnaStr"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="@string/imeAutoraT"
+             />
+
+        <EditText
+            android:id="@+id/nazivKnjige"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/naslovnaStr"
+            android:layout_alignStart="@+id/imeAutora"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="@string/nazivKnjigeT"
+             />
+
+        <Button
+            android:id="@+id/dNadjiSliku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/naslovnaStr"
+            android:layout_below="@+id/nazivKnjige"
+            android:backgroundTint="@color/colorRounded_button"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/dNadjiSlikuT" />
+
+        <Button
+            android:id="@+id/dPonisti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/dNadjiSliku"
+
+            android:backgroundTint="@color/colorRounded_button"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="@string/dPonistiT" />
+
+        <Button
+            android:id="@+id/dUpisiKnjigu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/colorRounded_button"
+
+            android:text="@string/dUpisiKnjiguT"
+            android:layout_alignBottom="@+id/dPonisti"
+            android:layout_alignEnd="@+id/imeAutora"
+            />
+
+
+
+        <Spinner
+            android:id="@+id/sKategorijaKnjige"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dNadjiSliku"
+            android:layout_centerHorizontal="true"
+            android:layout_alignStart="@+id/naslovnaStr"
+            android:layout_marginTop="5dp"
+            android:layout_alignEnd="@+id/imeAutora"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

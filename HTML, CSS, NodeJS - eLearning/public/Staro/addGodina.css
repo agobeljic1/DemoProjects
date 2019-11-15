@@ -1,0 +1,397 @@
+body
+{
+    display: grid;    
+    grid-template-areas:
+    'header'
+    'Main'    
+    'Tabela'
+    'Kraj';
+    margin:0;
+}
+
+#logo
+{
+    content: "";
+    margin-left:10px;
+    margin-top:10px;
+    background-image:url('logo.png');    
+    background-size: 100% 100%;
+    display: inline-block;
+    height: 60px;
+    width:80px;    
+}
+#header
+{
+    grid-area: header;
+    background-color:rgb(252, 211, 99);
+    display: grid;
+    grid-template-areas:
+    'logo'
+    'meni'   
+    'naziv';
+    width:100vw;
+  
+   
+}
+#meni
+{
+    grid-area: meni;
+    display:flex;
+    
+    justify-content: space-around;
+    width:100vw;
+}
+a.meniLink
+{
+    font-weight: bold;
+    font-size:0.55em;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(75, 75, 75);
+    margin-left:0.7vw;    
+}
+#meni0
+{
+    grid-area: meni0;
+        
+}
+#meni1
+{
+    grid-area: meni1;
+      
+}
+#meni2
+{
+    grid-area: meni2;    
+    
+}
+#meni3
+{
+    grid-area: meni3;   
+    
+}
+#meni4
+{
+    grid-area: meni4;
+       
+}
+#meni5
+{
+    grid-area: meni5;    
+    
+}
+#meni6
+{
+    grid-area: meni6;   
+
+}
+#meni7
+{
+    grid-area: meni7;
+    
+}
+#side
+{
+    grid-area: Main;
+    background-color: rgb(219, 240, 241);
+    width:100vw;
+    margin:0;
+
+    
+}
+#Odabir
+{
+    margin:0 auto;
+    font-size:1.2em;
+}
+#glavniSadrzaj
+{
+    grid-area: Tabela;
+    background-color: rgb(180, 175, 255);
+    width:100vw;
+    margin:0;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+#footer
+{
+    grid-area: Kraj;
+    background-color:rgb(252, 211, 99);    
+    margin-bottom:0;
+}
+#logo
+{
+    grid-area: logo;
+}
+#meni
+{
+    grid-area: meni;
+}
+#naziv
+{
+    grid-area: naziv;
+}
+
+#meniLista
+{
+    display: inline;
+    text-decoration: underline;
+    
+}
+#nazivPregled
+{   font-weight: bold;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:rgb(75, 75, 75);
+    margin-left:10px;     
+}
+
+/*
+a.meniLink
+{
+    font-weight: bold;
+    font-size:0.95em;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(75, 75, 75);    
+}*/
+#ListaScroll
+{
+    min-height:300px;
+    margin:0;
+    width:100%;
+    padding:0;
+    text-indent:10px;
+    background-color: white;    
+    overflow-y: scroll;   
+}
+
+.ScrollItem
+{       
+    text-align: left; 
+    line-height: 20px;   
+}
+#Odabir
+{
+    padding-bottom: 30px;
+}
+#TableS
+{
+    border:1px solid #000;
+    font-family:arial;
+    height:55%;
+    width:80vw;
+
+    text-align: center;
+    margin: auto;
+
+    top: 0; left: 0; bottom: 0; right: 0;      
+}
+#ListScroll
+{
+    /*
+    font-family:arial;
+    height: 300px;
+    width:60vw;
+    overflow-y: hidden;
+    text-align: center;
+    margin: auto;
+    
+    top: 0; left: 0; bottom: 0; right: 0; */
+
+}
+#content,#contentGlavni
+{
+    text-align: center;
+    margin: auto;
+
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+#side,#glavniSadrzaj
+{
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+td
+{
+    border:2px solid #504c4c;
+    text-align:center;
+    
+    padding:8px;
+    
+    margin-top:40px;
+    text-align: left;
+   
+}
+.tdLPadding
+{
+    padding-right:1.2vw;
+    padding-bottom:30px;
+}
+.tdHPadding
+{
+    padding-right:2vw;
+    padding-bottom:30px;
+}
+table{
+    border-collapse:collapse;   
+}
+#footer
+{
+    text-align: center;
+}
+#contentGlavni
+{
+    margin:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+
+}
+.bezU
+{
+    text-decoration: none;
+    color:black;
+}
+.Kockaa,.Kockab
+{   
+   width:29vw;
+   height:29vw;
+   background-color: rgb(219, 240, 241);  
+ 
+}
+.Kockaa
+{
+    margin-bottom:7vw;
+    margin-left:14vw;
+    margin-right:7vw;
+    margin-top:7vw;  
+}
+.Kockab
+{
+    margin-bottom:7vw;
+    margin-left:7vw;
+    margin-right:14vw;
+    margin-top:7vw; 
+}
+.blackLabel
+{
+    text-align: left;
+    
+}
+.input10,.blackLabel
+{
+    margin-left:10vw;
+    margin-right:10vw;
+    width:80vw;
+}
+.popo
+{
+    font-size: 0.6em;
+}
+#resetButton
+{
+    float:left;
+    margin-left:10vw;
+}
+#submitButton
+{
+    float:right;
+    margin-right:10vw;
+}
+
+@media screen and (min-width: 300px) {
+    .popo
+    {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    body
+    {
+        margin:0;
+        display: grid;
+        grid-template-areas:
+        'header header header header header header header header header header header header header header header header header header header header'
+        'Main Main Main Main Main Main Main Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela Tabela'    
+        'Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj Kraj';
+        height:100%;
+    }
+    
+    #nazivPregled
+    {   
+        margin-top:10px;
+        margin-right:10px;
+        float:right;
+       
+    }
+    #header
+    {          
+         grid-template-areas:
+         'logo naziv'
+         'meni meni' ;    
+    }
+ 
+    #side
+    {
+        width:35vw;
+    }
+    #glavniSadrzaj
+    {
+        width:65vw;
+    }
+    #ListScroll
+    {
+        width:25vw;
+    }  
+    .Kockaa,.Kockab
+    {   
+      width:22vw;
+      height:22vw;
+      background-color: rgb(219, 240, 241); 
+    }
+    .Kockaa
+    {
+        margin-bottom:3.5vw;
+        margin-left:7vw;
+        margin-right:3.5vw;
+        margin-top:3.5vw;  
+    }
+    .Kockab
+    {
+        margin-bottom:3.5vw;
+        margin-left:3.5vw;
+        margin-right:7vw;
+        margin-top:3.5vw; 
+    }
+    .input10,.blackLabel
+    {
+        margin-left:2.5vw;
+        margin-right:2.5vw;
+        width:30vw;
+    }
+    .popo
+    {
+        font-size: 1em;
+    }
+    #resetButton
+    {
+    float:left;
+    margin-left:2.5vw;
+    } 
+    #submitButton
+    {
+    float:right;
+    margin-right:-7.85vw;
+    }
+    a.meniLink
+    {
+        font-size:0.8em;
+    }
+  }
+

@@ -1,0 +1,29 @@
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\obj\Debug\Zadaca.csprojResolveAssemblyReference.cache
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\obj\Debug\Zadaca.csproj.CoreCompileInputs.cache
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\bin\Debug\Zadaca.exe.config
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\bin\Debug\Zadaca.exe
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\bin\Debug\Zadaca.pdb
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\obj\Debug\Zadaca.exe
+D:\ADNAN\Visual Studio\Zadaca\Zadaca\obj\Debug\Zadaca.pdb
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\obj\Debug\Zadaca.csprojResolveAssemblyReference.cache
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\obj\Debug\Zadaca.csproj.CoreCompileInputs.cache
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\obj\Debug\Zadaca.exe
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\obj\Debug\Zadaca.pdb
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\bin\Debug\Zadaca.exe.config
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\bin\Debug\Zadaca.exe
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadaca 1\Zadaca\bin\Debug\Zadaca.pdb
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\bin\Debug\Zadaca.exe.config
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\bin\Debug\Zadaca.exe
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\bin\Debug\Zadaca.pdb
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.csprojResolveAssemblyReference.cache
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.Ulaz.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.csproj.GenerateResource.Cache
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.csproj.CoreCompileInputs.cache
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.exe
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.pdb
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.Properties.Resources.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.PacijentPreglednik.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.AdminPreglednik.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.DoktorPreglednik.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.PortirPreglednik.resources
+D:\ADNAN\ETF\Druga Godina\Predmeti\NOVI\RPR\Zadace\Zadaca 2\Zadaca\obj\Debug\Zadaca.AnalizaSadrzaja.resources
