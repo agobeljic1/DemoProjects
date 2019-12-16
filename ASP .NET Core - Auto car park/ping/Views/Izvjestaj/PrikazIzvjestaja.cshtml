@@ -1,0 +1,140 @@
+﻿
+@using ping.ViewModels
+@model  IzvjestajViewModel
+@{
+    ViewBag.Title = "Izvještaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            @if (!ViewBag.Izvjestaj.SviAutomobili)
+            {
+                <h4 style="margin-left:200px">Izvještaj -  @ViewBag.Auto.Model</h4>
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="AutoId"></label>: @ViewBag.Auto.Model
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="VrijemePocetak"></label>: @ViewBag.Izvjestaj.VrijemePocetak
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="VrijemeKraj"></label>: @ViewBag.Izvjestaj.VrijemeKraj
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj naloga u vremenskom razdoblju: </label> @ViewBag.BrojNaloga
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj evidentiranih naloga: </label> @ViewBag.NalogEvidentiran
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj povrđenih naloga: </label> @ViewBag.NalogPotvrdjen
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj odbijenih naloga: </label> @ViewBag.NalogOdbijen
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj završenih naloga: </label> @ViewBag.NalogZavrsen
+                </div>
+            }
+            else
+            {
+                <h4 style="margin-left:200px">Izvještaj -  Svi automobili</h4>
+
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="VrijemePocetak"></label>: @ViewBag.Izvjestaj.VrijemePocetak
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="VrijemeKraj"></label>: @ViewBag.Izvjestaj.VrijemeKraj
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Broj automobila:</label> @ViewBag.BrojAutomobila
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Ukupan broj naloga u vremenskom razdoblju: </label> @ViewBag.BrojNaloga
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Ukupan broj evidentiranih naloga: </label> @ViewBag.NalogEvidentiran
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Ukupan broj povrđenih naloga: </label> @ViewBag.NalogPotvrdjen
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Ukupan broj odbijenih naloga: </label> @ViewBag.NalogOdbijen
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">Ukupan broj završenih naloga: </label> @ViewBag.NalogZavrsen
+                </div>
+            }
+
+
+
+
+        </div>
+
+
+        @if (ViewBag.BrojNaloga != 0)
+        {
+            <div class="col-md-6">
+                <h4 style="margin-left:200px">Vrste naloga</h4>
+                <div id="chart1"></div>
+            </div>
+            <div class="col-md-6">
+                <h4 style="margin-left:200px">Dani bez naloga</h4>
+                <div id="chart2"></div>
+            </div>
+        }
+
+    </div>
+
+    @section scripts{
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            if (@ViewBag.BrojNaloga!= 0)
+            {
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data1 = new google.visualization.DataTable();
+                    data1.addColumn('string', 'Vrsta naloga');
+                    data1.addColumn('number', 'Procenat vrste naloga');
+                    data1.addRows([
+                        ['Evidentiran', { v: @ViewBag.NalogEvidentiran, f: @ViewBag.ProcenatNalogEvidentiran.ToString()+"%" }],
+                        ['Potvrđen', { v: @ViewBag.NalogPotvrdjen, f: @ViewBag.ProcenatNalogPotvrdjen.ToString()+"%" }],
+                        ['Odbijen', { v: @ViewBag.NalogOdbijen, f: @ViewBag.ProcenatNalogOdbijen.ToString()+"%" }],
+                        ['Završen', { v: @ViewBag.NalogZavrsen, f: @ViewBag.ProcenatNalogZavrsen.ToString()+"%" }]
+                    ]);
+
+                    // Simple Pie Chart:
+                    var option1 = {
+                        title: 'Nalozi u ovom razdoblju',
+                        width: 400,
+                        height: 400
+                    };
+
+                    var data2 = new google.visualization.DataTable();
+                    data2.addColumn('string', 'Broj dana');
+                    data2.addColumn('number', 'Procenat dana');
+                    data2.addRows([
+                        ['Dani sa nalogom', { v: @ViewBag.ZauzetiBrojDana, f: @ViewBag.ZauzetiBrojDana.ToString()+"%" }],
+                        ['Dani bez naloga', { v: @ViewBag.NezauzetiBrojDana, f: @ViewBag.NezauzetiBrojDana.ToString()+"%" }]
+                    ]);
+
+                    var option2 = {
+                        title: 'Prosjecni broj dana sa nalogom i bez',
+                        width: 400,
+                        height: 400
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+                    chart.draw(data1, option1);
+
+                    chart = new google.visualization.PieChart(document.getElementById('chart2'));
+                    chart.draw(data2, option2);
+                }
+            }
+
+        </script>
+    }

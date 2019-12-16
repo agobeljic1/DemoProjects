@@ -1,0 +1,79 @@
+﻿
+@using ping.Models
+@model Nalog
+@{
+    ViewBag.Title = "Nalozi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div style="display: inline-block; width: 100%; margin-bottom: 2vh">
+    <h2>Lista naloga</h2>
+</div>
+
+<table id="myTable" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Automobil</th>
+            <th>Ime i prezime vozača</th>
+            <th>Datum početka najma</th>
+            <th>Datum završetka najma</th>
+            <th>Status naloga</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Nalog item in ViewBag.Data)
+        {
+            <tr onmouseover="this.style.cursor='pointer'" onclick="window.location.href = ('@Url.Action("PrikazNaloga","Nalog", new { nalogId=item.Id })')">
+                <th>@item.Id</th>
+                <th onmouseover="this.style.cursor='pointer'" onclick="window.location.href = ('@Url.Action("PrikazAuta","Automobili", new { autoId=item.Auto.Id })')">@item.Auto.Model</th>
+                <th>@item.ImePrezimeVozaca</th>
+                <th>@item.VrijemePocetak</th>
+                <th>@item.VrijemeKraj</th>
+                <th>@item.NalogStatus.Naziv</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "sEmptyTable": "Nema dostupnih naloga u tabeli",
+                    "sInfo": "_START_-_END_ od ukupno _TOTAL_ redova",
+                    "sInfoEmpty": "0-0 od ukupno 0 redova",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ",",
+                    "sLengthMenu": "Prikaz _MENU_ redova",
+                    "sLoadingRecords": "Učitavanje...",
+                    "sProcessing": "Procesiranje...",
+                    "sSearch": "Traži:",
+                    "sZeroRecords": "Nema odgovarajućih rezultata",
+                    "oPaginate": {
+                        "sFirst": "Prva",
+                        "sLast": "Zadnja",
+                        "sNext": "Sljedeća",
+                        "sPrevious": "Prethodna"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": sortiraj kolonu rastuće",
+                        "sSortDescending": ": sortiraj kolonu opadajuće"
+                    }
+                }
+            });;//myTable is the id of the table to be displayed as dataTable
+            $('div.dataTables_filter label input').css("display", "inline-block");
+            $('div.dataTables_filter label input').css("width", "auto");
+            $('div.dataTables_length label select').css("display", "inline-block");
+            $('div.dataTables_length label select').css("width", "auto");
+        });
+
+    </script>
+}

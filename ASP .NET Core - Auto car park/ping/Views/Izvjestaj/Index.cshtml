@@ -1,0 +1,69 @@
+﻿
+@using ping.ViewModels
+@model IzvjestajViewModel
+@{
+    ViewBag.Title = "Kreiraj izvještaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" action="@Url.Action("PrikazIzvjestaja", "Izvjestaj")">
+                <h4>Kreirajte novi izvještaj</h4>
+                <hr />
+
+
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="SviAutomobili">
+                            <input asp-for="SviAutomobili" onclick="invert();" />
+                            @Html.DisplayNameFor(m => m.SviAutomobili)
+                        </label>
+                    </div>
+                </div>
+
+                <div id="modelAutomobilaFormDiv" class="form-group">
+                    <label asp-for="AutoId"></label>
+                    <input asp-for="AutoId" id="modelAutomobilaId" class="form-control">
+                    <span asp-validation-for="AutoId" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="VrijemePocetak"></label>
+                    <input asp-for="VrijemePocetak" class="form-control" />
+                    <span asp-validation-for="VrijemePocetak" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VrijemeKraj"></label>
+                    <input asp-for="VrijemeKraj" class="form-control" />
+                    <span asp-validation-for="VrijemeKraj" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Potvrdi</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function invert() {
+            if (document.getElementById("modelAutomobilaId").disabled == true)
+                document.getElementById("modelAutomobilaId").disabled = false;
+            else
+                document.getElementById("modelAutomobilaId").disabled = true;
+        }
+    </script>
+}
+
+
+

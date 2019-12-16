@@ -1,0 +1,82 @@
+﻿
+@using ping.Models
+@model Auto
+@{
+	ViewBag.Title = "Automobili";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <link href="~/css/site.css" rel="stylesheet" />
+
+
+<div style="width: 100%">
+	<h2 style="display: inline-block">Lista automobila</h2>
+	@Html.ActionLink("Dodaj auto", "DodajAuto", "Automobili", null, new { @class = "btn btn-success", @style = "float:right;display:inline" })
+
+
+</div>
+
+<table id="myTable" class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Model</th>
+			<th>Godina proizvodnje</th>
+			<th>Vrsta goriva</th>
+			<th>Snaga motora</th>
+			<th>Broj šasije</th>
+			<th>Broj motora</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Auto item in ViewBag.Data)
+		{
+			<tr onmouseover="this.style.cursor='pointer'" onclick="window.location.href = ('@Url.Action("PrikazAuta","Automobili", new { autoId=item.Id })')">
+				<th>@item.Id</th>
+				<th>@item.Model</th>
+				<th>@item.GodinaProizvodnje</th>
+				<th>@item.VrstaGoriva.Naziv</th>
+                <th>@item.SnagaMotora KW (@((int)(100 * item.SnagaMotora * ViewBag.KOLIKO_IMA_KS_U_KW)/100.0) KS)</th>
+				<th>@item.BrojSasije</th>
+				<th>@item.BrojMotora</th>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			$('#myTable').DataTable( {
+		"language": {
+			"sEmptyTable":     "Nema dostupnih automobila u tabeli",
+			"sInfo":           "_START_-_END_ od ukupno _TOTAL_ redova",
+			"sInfoEmpty":      "0-0 od ukupno 0 redova",
+			"sInfoFiltered":   "",
+			"sInfoPostFix":    "",
+			"sInfoThousands":  ",",
+			"sLengthMenu":     "Prikaz _MENU_ redova",
+			"sLoadingRecords": "Učitavanje...",
+			"sProcessing":     "Procesiranje...",
+			"sSearch":         "Traži:",
+			"sZeroRecords":    "Nema odgovarajućih rezultata",
+			"oPaginate": {
+				"sFirst":    "Prva",
+				"sLast":     "Zadnja",
+				"sNext":     "Sljedeća",
+				"sPrevious": "Prethodna"
+			},
+			"oAria": {
+				"sSortAscending":  ": sortiraj kolonu rastuće",
+				"sSortDescending": ": sortiraj kolonu opadajuće"
+			}
+				}
+			});;//myTable is the id of the table to be displayed as dataTable
+            $('div.dataTables_filter label input').css("display", "inline-block");
+            $('div.dataTables_filter label input').css("width", "auto");
+            $('div.dataTables_length label select').css("display", "inline-block");
+            $('div.dataTables_length label select').css("width", "auto");
+		});
+
+	  </script>
+}
+	
