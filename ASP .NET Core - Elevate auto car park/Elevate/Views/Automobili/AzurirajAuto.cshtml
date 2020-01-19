@@ -1,0 +1,69 @@
+﻿@using Elevate.ViewModels
+@using Elevate.Models.DatabaseKlase
+@model AutoViewModel
+@{
+    ViewBag.Title = "Edit car";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <link href="~/libs/site.css" rel="stylesheet" />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" action="@Url.Action("SpasiPromjeneAuto", "Automobili")">
+                <h4>Edit car</h4>
+                <hr />                
+                <div class="form-group">
+                    <label asp-for="Model"></label>
+                    <input asp-for="Model" class="form-control" value=@ViewBag.Data.Model />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GodinaProizvodnje"></label>
+                    <input asp-for="GodinaProizvodnje" class="form-control" value=@ViewBag.Data.GodinaProizvodnje/>
+                    <span asp-validation-for="GodinaProizvodnje" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VrstaGoriva"></label>
+                    <select asp-for="VrstaGoriva" class="form-control">
+                        @foreach (Gorivo gorivo in ViewBag.Gorivo)
+                        {
+                            <option value=@gorivo.Id selected=@(gorivo.Id==ViewBag.Data.VrstaGoriva.Id)>@gorivo.Naziv</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SnagaMotora"></label>
+                    <div style="display:flex;width:100%">
+                        <input id="snagaMotoraInputId" asp-for="SnagaMotora" class="form-control" value=@ViewBag.Data.SnagaMotora/>
+                        <select id="snagaMotoraSelectId" asp-for="JedinicaSnageMotora" class="form-control">
+                            <option>KW</option>
+                            <option>KS</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="SnagaMotora" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BrojSasije"></label>
+                    <input asp-for="BrojSasije" class="form-control" value=@ViewBag.Data.BrojSasije/>
+                    <span asp-validation-for="BrojSasije" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BrojMotora"></label>
+                    <input asp-for="BrojMotora" class="form-control" value=@ViewBag.Data.BrojMotora/>
+                    <span asp-validation-for="BrojMotora" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Potvrdi</button>
+                </div>
+                <input asp-for="Id" value=@ViewBag.Data.Id style="visibility:hidden;height:0"/>
+            </form>
+        </section>
+    </div>
+</div>
